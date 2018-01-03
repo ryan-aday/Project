@@ -1,6 +1,7 @@
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 import java.io.*;
 import javax.imageio.ImageIO;
@@ -10,25 +11,27 @@ public class mainMenu extends JFrame{
     private JButton PlayGame;
     private JLabel background;
 
-    private void mouseClicked(MouseEvent e){
+    public void mouseClicked(MouseEvent e){
     }
 
-    private void mouseEntered(MouseEvent e){
+    public void mouseEntered(MouseEvent e){
     }
 
-    private void mousePressed(MouseEvent e){
+    public void mousePressed(MouseEvent e){
     }
 
-    private void mouseReleased(MouseEvent e){
+    public void mouseReleased(MouseEvent e){
     }
 
-    private void ActionPerformed(ActionEvent ae){
+    public void ActionPerformed(ActionEvent ae){
     }
 
-    private mainMenu(){}
+    public mainMenu(){
 
-    private static void main (String[] args){
     }
-    
+
+    public static void main (String[] args){
+
+    }   
 }
    
