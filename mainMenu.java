@@ -27,11 +27,23 @@ public class mainMenu extends JFrame{
     }
 
     public mainMenu(){
+	this.setTitle("Othello: The Game");
+	this.setSize(850,300);
+	this.setLocation(100,100);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    
+	pane = this.getContentPane();
+	pane.setLayout(new BoxLayout(pane, BoxLayout.LINE_AXIS));
+
+	PlayGame=new JButton("Start Game");
+	
+	pane.add(PlayGame);
 
     }
 
-    public static void main (String[] args){
-
-    }   
+    public static void main(String[] args) {
+	mainMenu g = new mainMenu();
+	g.setVisible(true);
+    } 
 }
    
