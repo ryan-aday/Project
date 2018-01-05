@@ -8,7 +8,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 
 public class Board extends JFrame{
-    public Container pane;
+    // private Container pane;
     private JButton[][] Locations;
     private JButton endTurn;
     
