@@ -11,41 +11,62 @@ public class Board extends JFrame{
     private Container pane;
     private JButton[][] Locations;
     private JButton endTurn;
-
+    
     public Board(){
-    pane = this.getContentPane();
+	pane = this.getContentPane();
 	Locations = new JButton[8][8];
-    pane.setLayout(new GridLayout(9,9));
-
-    for (int i = 0;i < Locations.length;i ++){
-	   for (int c = 0; c < Locations[i].length;c ++){
-           if (i == 3 && c == 3){
-                ImageIcon temp = new ImageIcon ("black.png");
-                Image image = temp.getImage();
-                Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon (newImage);
-                Locations[i][c] = new JButton(icon);
-            } 
-           else {
-            Locations[i][c] = new JButton();
-           }
-		    Locations[i][c].setBackground(new Color(0,153,76));
+	pane.setLayout(new GridLayout(9,9));
+	
+	for (int i = 0;i < Locations.length;i ++){
+	    for (int c = 0; c < Locations[i].length;c ++){
+		if (i == 3 && c == 3){
+		    ImageIcon temp = new ImageIcon ("black.png");
+		    Image image = temp.getImage();
+		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+		    ImageIcon icon = new ImageIcon (newImage);
+		    Locations[i][c] = new JButton(icon);
+		}
+		else if (i == 4 && c == 3){
+		    ImageIcon temp = new ImageIcon ("white.png");
+		    Image image = temp.getImage();
+		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+		    ImageIcon icon = new ImageIcon (newImage);
+		    Locations[i][c] = new JButton(icon);
+		}
+		else if (i == 3 && c == 4){
+		    ImageIcon temp = new ImageIcon ("white.png");
+		    Image image = temp.getImage();
+		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+		    ImageIcon icon = new ImageIcon (newImage);
+		    Locations[i][c] = new JButton(icon);
+		}
+		else if (i == 4 && c == 4){
+		    ImageIcon temp = new ImageIcon ("black.png");
+		    Image image = temp.getImage();
+		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+		    ImageIcon icon = new ImageIcon (newImage);
+		    Locations[i][c] = new JButton(icon);
+		}
+		else {
+		    Locations[i][c] = new JButton();
+		}
+		Locations[i][c].setBackground(new Color(0,153,76));
             Locations[i][c].setBorder(new LineBorder(Color.BLACK));
             pane.add(Locations[i][c]);
 	    }
 	}
-    endTurn = new JButton("End Turn");
-    pane.add(endTurn);
+	endTurn = new JButton("End Turn");
+	pane.add(endTurn);
     }
     
     public void actionPerformed(ActionEvent e){
 	
     }
-
+    
     public void mouseClicked(MouseEvent e){
 	
     }
-
+    
     public static void main(String[] args){
         Board g = new Board();
         g.setSize(new Dimension(800,800));
