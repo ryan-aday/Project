@@ -7,7 +7,8 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 public class mainMenu extends JFrame{
-    private Container start, game;
+    private JFrame frame;
+    private JPanel start, game;
     private JButton StartGame;
     private JLabel background;
 
@@ -32,13 +33,18 @@ public class mainMenu extends JFrame{
     }
 
     public mainMenu(){
+	frame= new JFrame("Go: The Game");
+	
 	this.setTitle("Othello: The Game");
 	this.setSize(850,300);
 	this.setLocation(100,100);
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	start = this.getContentPane();
-	start.setLayout(new BoxLayout(start, BoxLayout.LINE_AXIS));
+	start= new JPanel();
+	game= new JPanel();
+	
+	frame.setContentPane(start);
+        start.setLayout(new BoxLayout(start, BoxLayout.LINE_AXIS));
 	
 	try{
 	    BufferedImage img = ImageIO.read(new File("./logo.jpg"));
@@ -60,11 +66,14 @@ public class mainMenu extends JFrame{
 	StartGame=new JButton("Start Game");
 	StartGame.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
-		{}
+		{
+		    frame.remove(start);
+		    frame.setContentPane(game);
+		}
 	    });
 		    
 	
-	start.add(StartGame);
+	StartGame.add(StartGame);
 
     }
 
