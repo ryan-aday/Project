@@ -7,8 +7,8 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 public class mainMenu extends JFrame{
-    private JFrame frame;
-    private JPanel start, game;
+    private Container pane;
+    private JPanel game;
     private JButton StartGame;
     private JLabel background;
 
@@ -33,33 +33,29 @@ public class mainMenu extends JFrame{
     }
 
     public mainMenu(){
-	frame= new JFrame("Go: The Game");
-	
-	this.setTitle("Othello: The Game");
+        this.setTitle("Othello: The Game");
 	this.setSize(850,300);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	start= new JPanel();
-	game= new JPanel();
 	
-	frame.setContentPane(start);
-        start.setLayout(new BoxLayout(start, BoxLayout.LINE_AXIS));
+	pane=this.getContentPane();
+        pane.setLayout(new BoxLayout(pane, BoxLayout.LINE_AXIS));
 	
 	try{
 	    BufferedImage img = ImageIO.read(new File("./logo.jpg"));
 	    logo = new ImageIcon(img);
 	    JLabel logoDisp= new JLabel(logo);
 	    JOptionPane.showMessageDialog(null, logoDisp);
-	    start.add(logoDisp);
+	    pane.add(logoDisp);
 	}
 
 	catch(IOException ie){
 	    System.out.println("Error reading logo img file");
 	}
 
-	start.add(Box.createHorizontalGlue());
-	start.add(Box.createRigidArea(new Dimension(10, 0)));
+	pane.add(Box.createHorizontalGlue());
+	pane.add(Box.createRigidArea(new Dimension(10, 0)));
 	
 
 
@@ -67,16 +63,26 @@ public class mainMenu extends JFrame{
 	StartGame.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
-		    frame.remove(start);
-		    frame.setContentPane(game);
+		    getContentPane().removeAll();
+		    getContentPane().add(game, BorderLayout.CENTER);
+		    getContentPane().doLayout();
+		    update(getGraphics());
 		}
 	    });
 		    
 	
-	StartGame.add(StartGame);
+        pane.add(StartGame);
 
     }
 
+    
+    private void changePanel(JPanel panel) {
+	getContentPane().removeAll();
+	getContentPane().add(panel, BorderLayout.CENTER);
+	getContentPane().doLayout();
+	update(getGraphics());
+    }
+    
     public static void main(String[] args) {
 	mainMenu g = new mainMenu();
 	g.setVisible(true);
