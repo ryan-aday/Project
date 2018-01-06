@@ -1,9 +1,0 @@
-public abstract class Pieces(){
-    abstract void showValidMoves(){}
-
-    abstract int getColor(){}
-
-    abstract void setColor(){}
-
-    abstract addToPoints(){}
-}
