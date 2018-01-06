@@ -1,4 +1,0 @@
-
-public Black extends Pieces{
-    
-}

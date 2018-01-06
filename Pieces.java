@@ -1,12 +1,12 @@
 public abstract Pieces{
     public abstract void showValidMoves(){}
 
-    public abstract int getColor(){}
+    private abstract int getColor(){}
 
-    public abstract void setColor(){}
+    private abstract void setColor(){}
 
-    public abstract void addToPoints(){}
+    private abstract void addToPoints(){}
 
-    public abstract void flip{}
+    private abstract void flip{}
 
 }
