@@ -1,0 +1,4 @@
+
+public White extends Pieces{
+    
+}
