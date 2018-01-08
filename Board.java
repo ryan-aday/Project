@@ -7,7 +7,7 @@ import java.awt.event.*;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 
-public class Board extends JFrame{
+public class Board extends JFrame implements MouseListener{
     public Container pane;
     private JButton[][] Locations;
     private JButton endTurn;
@@ -61,7 +61,7 @@ public class Board extends JFrame{
 		}
 		else {
 		    Locations[i][c] = new JButton();
-            Locations[i][c].setEnabled(false);
+            Locations[i][c].addMouseListener(this);
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
         Locations[i][c].setBorder(new LineBorder(Color.BLACK));
@@ -84,8 +84,27 @@ public class Board extends JFrame{
 	
     }
     
+    public void mousePressed(MouseEvent e){
+        
+    }
+    
+    public void mouseReleased(MouseEvent e){
+        
+    }
+    
+    public void mouseEntered(MouseEvent e){
+    
+    }
+    
+    public void mouseExited(MouseEvent e){
+        
+    }
+    
     public void mouseClicked(MouseEvent e){
-	
+       int x = getX();
+       int y = getY();
+       ImageIcon temp = new ImageIcon("black.png");
+       this.Locations[x][y].setIcon(temp);
     }
     
     public static void main(String[] args){
