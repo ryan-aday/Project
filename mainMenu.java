@@ -6,9 +6,13 @@ import java.awt.event.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-public class mainMenu extends Board{
-    private Container pane;
-    //private JPanel game;
+public class mainMenu extends JFrame{
+    //    private Container pane;
+    // private JFrame start, game;
+    private JFrame frame;
+    private JPanel home;
+    // private JPanel game;
+    
     private JButton StartGame;
     private JLabel background;
 
@@ -29,34 +33,38 @@ public class mainMenu extends Board{
     public void mouseReleased(MouseEvent e){
     }
 
-    public void ActionPerformed(ActionEvent ae){
+    public void actionPerformed(ActionEvent ae){
     }
 
     public mainMenu(){
-	getContentPane().removeAll();
-        this.setTitle("Othello: The Game");
-	this.setSize(850,300);
-	this.setLocation(100,100);
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+	frame= new JFrame("Othello");
 	
-	pane=this.getContentPane();
-        pane.setLayout(new BoxLayout(pane, BoxLayout.LINE_AXIS));
+	home= new JPanel();
+	
+        frame.setTitle("Othello: The Game");
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	frame.setContentPane(home);
+    
+	//pane=this.getContentPane();
+	home.setSize(850,300);
+	home.setLocation(100,100);
+        home.setLayout(new BoxLayout(home, BoxLayout.LINE_AXIS));
 	
 	try{
 	    BufferedImage img = ImageIO.read(new File("./logo.jpg"));
 	    logo = new ImageIcon(img);
 	    JLabel logoDisp= new JLabel(logo);
 	    JOptionPane.showMessageDialog(null, logoDisp);
-	    pane.add(logoDisp);
+	    home.add(logoDisp);
 	}
 
 	catch(IOException ie){
 	    System.out.println("Error reading logo img file");
 	}
 
-	pane.add(Box.createHorizontalGlue());
-	pane.add(Box.createRigidArea(new Dimension(10, 0)));
+	home.add(Box.createHorizontalGlue());
+	home.add(Box.createRigidArea(new Dimension(10, 0)));
 	
 
 
@@ -72,13 +80,19 @@ public class mainMenu extends Board{
 		    getContentPane().doLayout();
 		    update(getGraphics());
 		    */
+		    //super();
+		    //frame= super();
+		    // Board();
+		    // frame.setVisible(false);
+		    Board.main(new String[0]);
 		}
 	    });
-		    
-	
-        pane.add(StartGame);
+		    	
+        home.add(StartGame);
 
     }
+
+    
     
     public static void main(String[] args) {
 	mainMenu g = new mainMenu();
