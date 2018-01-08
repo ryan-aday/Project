@@ -9,7 +9,7 @@ public class BlackPiece extends Pieces{
     public void showValidMoves(){}
 
     public void setColor(int x, int y){
-	super.colors[x][y]=0;
+	super.colors[x][y]=color;
     }
 
     public void addToPoints(int x, int y){
