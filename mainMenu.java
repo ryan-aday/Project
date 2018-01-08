@@ -8,11 +8,7 @@ import javax.imageio.ImageIO;
 
 public class mainMenu extends JFrame{
     private Container pane;
-    // private JFrame start, game;
-    // private JFrame frame;
-    //private JPanel home;
-    // private JPanel game;
-    
+
     private JButton StartGame;
     private JLabel background;
 
@@ -21,18 +17,12 @@ public class mainMenu extends JFrame{
     private JLabel l;
 
     public mainMenu(){
-	//	frame= new JFrame("Othello");
-	
-	//home= new JPanel();
-	pane=this.getContentPane();
         this.setTitle("Othello: The Game");
+	this.setSize(850,300);
+	this.setLocation(100,100);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	//frame.setContentPane(home);
-    
-	//pane=this.getContentPane();
-	pane.setSize(850,300);
-	pane.setLocation(100,100);
+	
+	pane=this.getContentPane();
         pane.setLayout(new BoxLayout(pane, BoxLayout.LINE_AXIS));
 	
 	try{
@@ -56,18 +46,6 @@ public class mainMenu extends JFrame{
 	StartGame.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
-		    //getContentPane().removeAll();
-		    //super.Board();
-		    
-		    /*
-		    getContentPane().add(game, BorderLayout.CENTER);
-		    getContentPane().doLayout();
-		    update(getGraphics());
-		    */
-		    //super();
-		    //frame= super();
-		    // Board();
-		    // frame.setVisible(false);
 		    Board.main(new String[0]);
 		}
 	    });
@@ -76,6 +54,22 @@ public class mainMenu extends JFrame{
 
     }
 
+    private void mouseClicked(MouseEvent e){
+    }
+   
+     private void mouseEntered(MouseEvent e){
+     }
+ 
+     private void mousePressed(MouseEvent e){
+     }
+ 
+     private void mouseReleased(MouseEvent e){
+     }
+ 
+     private void ActionPerformed(ActionEvent ae){
+     }
+
+    
     
     
     public static void main(String[] args) {
