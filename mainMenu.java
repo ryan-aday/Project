@@ -7,10 +7,10 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 public class mainMenu extends JFrame{
-    //    private Container pane;
+    private Container pane;
     // private JFrame start, game;
-    private JFrame frame;
-    private JPanel home;
+    // private JFrame frame;
+    //private JPanel home;
     // private JPanel game;
     
     private JButton StartGame;
@@ -20,51 +20,35 @@ public class mainMenu extends JFrame{
     private JLabel logoLabel;
     private JLabel l;
 
-    
-    public void mouseClicked(MouseEvent e){
-    }
-
-    public void mouseEntered(MouseEvent e){
-    }
-
-    public void mousePressed(MouseEvent e){
-    }
-
-    public void mouseReleased(MouseEvent e){
-    }
-
-    public void actionPerformed(ActionEvent ae){
-    }
-
     public mainMenu(){
-	frame= new JFrame("Othello");
+	//	frame= new JFrame("Othello");
 	
-	home= new JPanel();
-	
-        frame.setTitle("Othello: The Game");
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	//home= new JPanel();
+	pane=this.getContentPane();
+        this.setTitle("Othello: The Game");
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	frame.setContentPane(home);
+	//frame.setContentPane(home);
     
 	//pane=this.getContentPane();
-	home.setSize(850,300);
-	home.setLocation(100,100);
-        home.setLayout(new BoxLayout(home, BoxLayout.LINE_AXIS));
+	pane.setSize(850,300);
+	pane.setLocation(100,100);
+        pane.setLayout(new BoxLayout(pane, BoxLayout.LINE_AXIS));
 	
 	try{
 	    BufferedImage img = ImageIO.read(new File("./logo.jpg"));
 	    logo = new ImageIcon(img);
 	    JLabel logoDisp= new JLabel(logo);
 	    JOptionPane.showMessageDialog(null, logoDisp);
-	    home.add(logoDisp);
+	    pane.add(logoDisp);
 	}
 
 	catch(IOException ie){
 	    System.out.println("Error reading logo img file");
 	}
 
-	home.add(Box.createHorizontalGlue());
-	home.add(Box.createRigidArea(new Dimension(10, 0)));
+	pane.add(Box.createHorizontalGlue());
+        pane.add(Box.createRigidArea(new Dimension(10, 0)));
 	
 
 
@@ -88,7 +72,7 @@ public class mainMenu extends JFrame{
 		}
 	    });
 		    	
-        home.add(StartGame);
+        pane.add(StartGame);
 
     }
 
