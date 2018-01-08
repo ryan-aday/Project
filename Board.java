@@ -25,6 +25,9 @@ public class Board extends JFrame{
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c] = new JButton(icon);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
 		}
 		else if (i == 4 && c == 3){
 		    ImageIcon temp = new ImageIcon ("white.png");
@@ -32,6 +35,9 @@ public class Board extends JFrame{
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c] = new JButton(icon);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
 		}
 		else if (i == 3 && c == 4){
 		    ImageIcon temp = new ImageIcon ("white.png");
@@ -39,6 +45,9 @@ public class Board extends JFrame{
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c] = new JButton(icon);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
 		}
 		else if (i == 4 && c == 4){
 		    ImageIcon temp = new ImageIcon ("black.png");
@@ -46,13 +55,17 @@ public class Board extends JFrame{
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c] = new JButton(icon);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
 		}
 		else {
 		    Locations[i][c] = new JButton();
+            Locations[i][c].setEnabled(false);
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
-            Locations[i][c].setBorder(new LineBorder(Color.BLACK));
-            pane.add(Locations[i][c]);
+        Locations[i][c].setBorder(new LineBorder(Color.BLACK));
+        pane.add(Locations[i][c]);
 	    }
 	}
 	endTurn = new JButton("End Turn");
