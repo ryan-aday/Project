@@ -9,7 +9,6 @@ public abstract class Pieces{
 				{81, 82, 83, 84, 85, 86, 87, 88}};
     public int[][] colors= new int[8][8];
     
-    abstract void showValidMoves();
 
     private int getColor(int loc){
 	for (int rcount=0; rcount<8; rcount++){

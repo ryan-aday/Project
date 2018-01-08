@@ -6,8 +6,6 @@ public class BlackPiece extends Pieces{
     private int numValidMoves;
     private int[] allPoints={};
 
-    public void showValidMoves(){}
-
     public void setColor(int x, int y){
 	super.colors[x][y]=color;
     }
@@ -21,7 +19,7 @@ public class BlackPiece extends Pieces{
 	allPoints=comb;
     }
     
-    public int getX(int loc){
+    public int getY(int loc){
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
 		if (super.locations[rcount][ccount]==loc){
@@ -32,7 +30,7 @@ public class BlackPiece extends Pieces{
 	return -1;
     }
 
-    public int getY(int loc){
+    public int getX(int loc){
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
 		if (super.locations[rcount][ccount]==loc){
@@ -43,7 +41,9 @@ public class BlackPiece extends Pieces{
 	return -1;
     }
 
-    public void flip(){}
+    public void flip(int x, int y){
+	super.colors[x][y]=1;
+    }
 
     public BlackPiece(int x, int y){}
 }
