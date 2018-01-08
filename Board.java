@@ -72,6 +72,14 @@ public class Board extends JFrame{
 	pane.add(endTurn);
     }
     
+    public void clearColor(JButton[][] a){
+        for (int i = 0;i < a.length; i++){
+            for (int c = 0;c < a[i].length; c++){
+                a[i][c].setBorder(new LineBorder(Color.BLACK));
+            }
+        }
+    }
+    
     public void actionPerformed(ActionEvent e){
 	
     }
