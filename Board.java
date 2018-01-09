@@ -24,48 +24,56 @@ public class Board extends JFrame implements MouseListener{
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new JButton(icon);
-		    Locations[i][c].setFocusPainted(false);
-		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
+		    Locations[i][c] = new Pieces(i,c);
+            Locations[i][c] = new BlackPiece(i,c);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
+            Locations[i][c].setIcon(icon);
 		}
 		else if (i == 4 && c == 3){
 		    ImageIcon temp = new ImageIcon ("white.png");
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new JButton(icon);
-		    Locations[i][c].setFocusPainted(false);
-		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
+		    Locations[i][c] = new Pieces(i,c);
+            Locations[i][c] = new WhitePiece(i,c);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
+            Locations[i][c].setIcon(icon);
 		}
 		else if (i == 3 && c == 4){
 		    ImageIcon temp = new ImageIcon ("white.png");
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new JButton(icon);
-		    Locations[i][c].setFocusPainted(false);
-		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
+		    Locations[i][c] = new Pieces(i,c);
+            Locations[i][c] = new WhitePiece(i,c);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
+            Locations[i][c].setIcon(icon);
 		}
 		else if (i == 4 && c == 4){
 		    ImageIcon temp = new ImageIcon ("black.png");
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new JButton(icon);
-		    Locations[i][c].setFocusPainted(false);
-		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
+		    Locations[i][c] = new Pieces(i,c);
+            Locations[i][c] = new BlackPiece(i,c);
+            Locations[i][c].setFocusPainted(false);
+            Locations[i][c].setEnabled(false);
+            Locations[i][c].setDisabledIcon(icon);
+            Locations[i][c].setIcon(icon);
 		}
 		else {
-		    Locations[i][c] = new JButton();
-		    Locations[i][c].addMouseListener(this);
+		    Locations[i][c] = new Pieces(i,c);
+            Locations[i][c].addMouseListener(this);
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
-		Locations[i][c].setBorder(new LineBorder(Color.BLACK));
-		pane.add(Locations[i][c]);
+        Locations[i][c].setBorder(new LineBorder(Color.BLACK));
+        pane.add(Locations[i][c]);
 	    }
 	}
 	endTurn = new JButton("End Turn");
@@ -101,11 +109,10 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseClicked(MouseEvent e){
-       ImageIcon temp = new ImageIcon ("black.png");
-       Image image = temp.getImage();
-       Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-       ImageIcon icon = new ImageIcon (newImage);
-       this.Locations[2][2].setIcon(icon);
+       int x = getX();
+       int y = getY();
+       ImageIcon temp = new ImageIcon("black.png");
+       this.Locations[x][y].setIcon(temp);
     }
     
     public static void main(String[] args){
