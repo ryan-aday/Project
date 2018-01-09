@@ -6,9 +6,11 @@ public class BlackPiece extends Pieces{
     private int numValidMoves;
     private int[] allPoints={};
 
-    public void setColor(int x, int y){
-	super.colors[x][y]=color;
-    }
+    public void showValidMoves(){}
+
+    //public void setColor(int x, int y){
+	//super.colors[x][y]=color;
+    //}
 
     public void addToPoints(int x, int y){
 	int[] point={x+10*y};
@@ -19,31 +21,31 @@ public class BlackPiece extends Pieces{
 	allPoints=comb;
     }
     
-    public int getY(int loc){
-	for (int rcount=0; rcount<8; rcount++){
-	    for (int ccount=0; ccount<8; ccount++){
-		if (super.locations[rcount][ccount]==loc){
-		    return rcount;
-		}
-	    }
-	}
-	return -1;
-    }
+    //public int getX(int loc){
+	//for (int rcount=0; rcount<8; rcount++){
+	  //  for (int ccount=0; ccount<8; ccount++){
+	//	if (super.locations[rcount][ccount]==loc){
+	//	    return rcount;
+	//	}
+	//    }
+	//}
+	//return -1;
+   // }
 
-    public int getX(int loc){
-	for (int rcount=0; rcount<8; rcount++){
-	    for (int ccount=0; ccount<8; ccount++){
-		if (super.locations[rcount][ccount]==loc){
-		    return ccount;
-		}
-	    }
-	}
-	return -1;
-    }
+   // public int getY(int loc){
+	//for (int rcount=0; rcount<8; rcount++){
+	  //  for (int ccount=0; ccount<8; ccount++){
+	//	if (super.locations[rcount][ccount]==loc){
+	//	    return ccount;
+	//	}
+	//    }
+	//}
+	//return -1;
+   // }
 
-    public void flip(int x, int y){
-	super.colors[x][y]=1;
-    }
+    public void flip(){}
 
-    public BlackPiece(int x, int y){}
+    public BlackPiece(int x, int y){
+        super(x,y);
+    }
 }
