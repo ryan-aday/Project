@@ -6,12 +6,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
-import java.awt.image.BufferedImage;
 
 public class Board extends JFrame implements MouseListener{
     public Container pane;
     private Pieces[][] Locations;
     private JButton endTurn;
+    private int blackNum;
+    private int whiteNum;
     
     public Board(){
 	pane = this.getContentPane();
@@ -22,6 +23,7 @@ public class Board extends JFrame implements MouseListener{
 	    for (int c = 0; c < Locations[i].length;c ++){
             Locations[i][c] = new Pieces(i,c);
             Locations[i][c].addMouseListener(this);
+	    
 		if (i == 3 && c == 3){
 		    ImageIcon temp = new ImageIcon ("black.png");
 		    Image image = temp.getImage();
@@ -78,6 +80,18 @@ public class Board extends JFrame implements MouseListener{
             }
         }
     }
+
+    public void isVictory(){
+	for (int rcount=0; rcount<8; rcount++){
+	    for (int ccount=0; ccount<8; ccount++){
+		if (Locations[rcount][ccount]==null){
+		}else Victory.main(new String[0]);
+	    }
+	}
+    }
+
+    public void showValidMoves(int x, int y){
+	if Pieces.
     
     public void actionPerformed(ActionEvent e){
 	
@@ -92,10 +106,7 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseEntered(MouseEvent e){
-	Pieces m = (Pieces) e.getSource();
-	Color lightGray = new Color(192,192,192);
-	BufferedImage blackTemp = new BufferedImage ("black.png");
-	blackTemp.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+	
     }
     
     public void mouseExited(MouseEvent e){
@@ -110,8 +121,8 @@ public class Board extends JFrame implements MouseListener{
         Pieces m = (Pieces) e.getSource();
         m.setFocusPainted(false);
         m.setEnabled(false);
-       	m.setDisabledIcon(icon);
-	m.setIcon(icon);
+		m.setDisabledIcon(icon);
+		m.setIcon(icon);
     }
     
     public static void main(String[] args){
