@@ -15,4 +15,12 @@ public class Pieces extends JButton{
         this.x = x;
         this.y = y;
     }
+    
+    public int getCol(){
+	return x;
+    }
+
+    public int getRow(){
+	return y;
+    }
 }
