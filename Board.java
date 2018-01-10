@@ -9,23 +9,22 @@ import javax.swing.ImageIcon;
 
 public class Board extends JFrame implements MouseListener{
     public Container pane;
-    private JButton[][] Locations;
+    private Pieces[][] Locations;
     private JButton endTurn;
     
     public Board(){
 	pane = this.getContentPane();
-	Locations = new JButton[8][8];
+	Locations = new Pieces[8][8];
 	pane.setLayout(new GridLayout(9,9));
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
+            Locations[i][c] = new Pieces(i,c);
 		if (i == 3 && c == 3){
 		    ImageIcon temp = new ImageIcon ("black.png");
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new Pieces(i,c);
-		    Locations[i][c] = new BlackPiece(i,c);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
@@ -36,8 +35,6 @@ public class Board extends JFrame implements MouseListener{
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new Pieces(i,c);
-		    Locations[i][c] = new WhitePiece(i,c);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
@@ -48,8 +45,6 @@ public class Board extends JFrame implements MouseListener{
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new Pieces(i,c);
-		    Locations[i][c] = new WhitePiece(i,c);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
@@ -60,16 +55,10 @@ public class Board extends JFrame implements MouseListener{
 		    Image image = temp.getImage();
 		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 		    ImageIcon icon = new ImageIcon (newImage);
-		    Locations[i][c] = new Pieces(i,c);
-		    Locations[i][c] = new BlackPiece(i,c);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
-		}
-		else {
-		    Locations[i][c] = new Pieces(i,c);
-		    Locations[i][c].addMouseListener(this);
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
 		Locations[i][c].setBorder(new LineBorder(Color.BLACK));
