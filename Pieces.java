@@ -10,11 +10,12 @@ import javax.swing.ImageIcon;
 public class Pieces extends JButton{
     private int x;
     private int y;
-    private Color c;
+    private int BlackOrWhite; // 0 is black, 1 is white
     
-    public Pieces(int x, int y){
+    public Pieces(int x, int y, int l){
         this.x = x;
         this.y = y;
+        BlackOrWhite = l;
     }
     
     public int getX(){
@@ -25,8 +26,12 @@ public class Pieces extends JButton{
         return y;
     }
     
-    public void setColor(Color b){
-        c = b;
+    public void setColor(int l){
+        BlackOrWhite = l;
+    }
+    
+    public int getColor(){
+        return BlackOrWhite;
     }
 
 }
