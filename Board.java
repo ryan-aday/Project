@@ -20,6 +20,7 @@ public class Board extends JFrame implements MouseListener{
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
             Locations[i][c] = new Pieces(i,c);
+            Locations[i][c].addMouseListener(this);
 		if (i == 3 && c == 3){
 		    ImageIcon temp = new ImageIcon ("black.png");
 		    Image image = temp.getImage();
@@ -98,7 +99,15 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseClicked(MouseEvent e){
-        e.getSource();
+        ImageIcon temp = new ImageIcon ("black.png");
+        Image image = temp.getImage();
+        Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon (newImage);
+        Pieces m = (Pieces) e.getSource();
+        m.setFocusPainted(false);
+        m.setEnabled(false);
+		m.setDisabledIcon(icon);
+		m.setIcon(icon);
     }
     
     public static void main(String[] args){
