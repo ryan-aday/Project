@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
 
 public class Board extends JFrame implements MouseListener{
     public Container pane;
@@ -91,7 +92,10 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseEntered(MouseEvent e){
-	
+	Pieces m = (Pieces) e.getSource();
+	Color lightGray = new Color(192,192,192);
+	BufferedImage blackTemp = new BufferedImage ("black.png");
+	blackTemp.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
     }
     
     public void mouseExited(MouseEvent e){
@@ -106,8 +110,8 @@ public class Board extends JFrame implements MouseListener{
         Pieces m = (Pieces) e.getSource();
         m.setFocusPainted(false);
         m.setEnabled(false);
-		m.setDisabledIcon(icon);
-		m.setIcon(icon);
+       	m.setDisabledIcon(icon);
+	m.setIcon(icon);
     }
     
     public static void main(String[] args){
