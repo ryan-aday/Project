@@ -17,6 +17,7 @@ public class Board extends JFrame implements MouseListener{
     private int blackNum;
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll;
+    private boolean isBlackTurn;
     
     public int Player=1;
     
@@ -28,6 +29,12 @@ public class Board extends JFrame implements MouseListener{
 	whiteRoll = new ImageIcon("lightGray.jpg");
 	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	blackRoll = new ImageIcon(BTemp);
+<<<<<<< HEAD
+        Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+	whiteRoll = new ImageIcon(WTemp);
+	isBlackTurn = true;
+=======
+>>>>>>> 7a5fa0a44f65e9284db3200076298a464d2da696
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -138,15 +145,29 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseClicked(MouseEvent e){
-        ImageIcon temp = new ImageIcon ("black.png");
-        Image image = temp.getImage();
-        Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon icon = new ImageIcon (newImage);
+        ImageIcon BTemp = new ImageIcon ("black.png");
+	ImageIcon WTemp = new ImageIcon ("white.png");
+	Image WImage = WTemp.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+        Image BImage = BTemp.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);;
+        ImageIcon BIcon = new ImageIcon (BImage);
+	ImageIcon WIcon = new ImageIcon (WImage);
         Pieces m = (Pieces) e.getSource();
+
+	if (isBlackTurn){
         m.setFocusPainted(false);
         m.setEnabled(false);
-		m.setDisabledIcon(icon);
-		m.setIcon(icon);
+	m.setDisabledIcon(BIcon);
+	m.setIcon(BIcon);
+	this.isBlackTurn = false;
+	}
+	
+	else {
+	    m.setFocusPainted(false);
+	    m.setEnabled(false);
+	    m.setDisabledIcon(WIcon);
+	    m.setIcon(WIcon);
+	    this.isBlackTurn = true;
+	}
     }
     
     public static void main(String[] args){
