@@ -95,6 +95,13 @@ public class Board extends JFrame implements MouseListener{
 	return Player;
     }
 
+    public void showValidMoves(int x, int y){
+	if (Pieces[Pieces.getX()][Pieces.getY()].getColor==1){
+	    if (Pieces[Pieces.getX()-1][Pieces.getY()-1]){
+	    }
+	}
+    }
+    
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
@@ -104,10 +111,6 @@ public class Board extends JFrame implements MouseListener{
 	}
     }
 
-    public void showValidMoves(int x, int y){
-	if Pieces
-    }
-    
     public void actionPerformed(ActionEvent e){
 	
     }
