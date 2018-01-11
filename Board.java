@@ -18,6 +18,7 @@ public class Board extends JFrame implements MouseListener{
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll;
     
+    public int Player=1;
     
     public Board(){
 	pane = this.getContentPane();
@@ -27,8 +28,6 @@ public class Board extends JFrame implements MouseListener{
 	whiteRoll = new ImageIcon("lightGray.jpg");
 	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	blackRoll = new ImageIcon(BTemp);
-        Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-	whiteRoll = new ImageIcon(WTemp);
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -92,6 +91,10 @@ public class Board extends JFrame implements MouseListener{
         }
     }
 
+    public int getPlayer(){
+	return Player;
+    }
+
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
@@ -102,7 +105,7 @@ public class Board extends JFrame implements MouseListener{
     }
 
     public void showValidMoves(int x, int y){
-	
+	if Pieces
     }
     
     public void actionPerformed(ActionEvent e){
