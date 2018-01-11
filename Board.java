@@ -27,6 +27,8 @@ public class Board extends JFrame implements MouseListener{
 	whiteRoll = new ImageIcon("lightGray.jpg");
 	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	blackRoll = new ImageIcon(BTemp);
+        Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+	whiteRoll = new ImageIcon(WTemp);
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -100,6 +102,7 @@ public class Board extends JFrame implements MouseListener{
     }
 
     public void showValidMoves(int x, int y){
+	
     }
     
     public void actionPerformed(ActionEvent e){
