@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.*;
 
 public class Board extends JFrame implements MouseListener{
     public Container pane;
@@ -13,11 +16,15 @@ public class Board extends JFrame implements MouseListener{
     private JButton endTurn;
     private int blackNum;
     private int whiteNum;
+    private ImageIcon blackRoll,whiteRoll;
+    
     
     public Board(){
 	pane = this.getContentPane();
 	Locations = new Pieces[8][8];
 	pane.setLayout(new GridLayout(9,9));
+    blackRoll = new ImageIcon("darkGray.png");
+    whiteRoll = new ImageIcon("lightGray.jpg");
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -91,14 +98,14 @@ public class Board extends JFrame implements MouseListener{
     }
 
     public void showValidMoves(int x, int y){
-	if Pieces.
+    }
     
     public void actionPerformed(ActionEvent e){
 	
     }
     
     public void mousePressed(MouseEvent e){
-	
+	   
     }
     
     public void mouseReleased(MouseEvent e){
@@ -106,11 +113,12 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseEntered(MouseEvent e){
-	
+        Pieces m = (Pieces) e.getSource();
+        m.setIcon(blackRoll);
     }
     
     public void mouseExited(MouseEvent e){
-	
+	   
     }
     
     public void mouseClicked(MouseEvent e){
