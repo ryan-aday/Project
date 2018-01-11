@@ -23,8 +23,10 @@ public class Board extends JFrame implements MouseListener{
 	pane = this.getContentPane();
 	Locations = new Pieces[8][8];
 	pane.setLayout(new GridLayout(9,9));
-    blackRoll = new ImageIcon("darkGray.png");
-    whiteRoll = new ImageIcon("lightGray.jpg");
+	blackRoll = new ImageIcon("darkGray.png");
+	whiteRoll = new ImageIcon("lightGray.jpg");
+	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+	blackRoll = new ImageIcon(BTemp);
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -114,12 +116,16 @@ public class Board extends JFrame implements MouseListener{
     
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
+	if (m.getIcon() == null){
         m.setIcon(blackRoll);
+	}
     }
     
     public void mouseExited(MouseEvent e){
 	   Pieces m = (Pieces) e.getSource();
-        m.setIcon(null);
+	   if (m.getIcon() == blackRoll){
+	   m.setIcon(null);
+	   }
     }
     
     public void mouseClicked(MouseEvent e){
