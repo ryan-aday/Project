@@ -118,7 +118,8 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseExited(MouseEvent e){
-	   
+	   Pieces m = (Pieces) e.getSource();
+        m.setIcon(null);
     }
     
     public void mouseClicked(MouseEvent e){
