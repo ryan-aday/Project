@@ -1,11 +1,11 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JComponent;
+//import java.awt.Color;
+//import java.awt.Graphics;
+//import javax.swing.JComponent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.LineBorder;
-import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
@@ -19,6 +19,8 @@ public class Board extends JFrame implements MouseListener{
     private ImageIcon blackRoll,whiteRoll;
     private boolean isBlackTurn;
     
+    // public static int Player1=1;
+    //public static int Player2=2;
     public int Player=1;
     
     public Board(){
@@ -29,12 +31,9 @@ public class Board extends JFrame implements MouseListener{
 	whiteRoll = new ImageIcon("lightGray.jpg");
 	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	blackRoll = new ImageIcon(BTemp);
-<<<<<<< HEAD
         Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	whiteRoll = new ImageIcon(WTemp);
 	isBlackTurn = true;
-=======
->>>>>>> 7a5fa0a44f65e9284db3200076298a464d2da696
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -102,12 +101,35 @@ public class Board extends JFrame implements MouseListener{
 	return Player;
     }
 
-    public void showValidMoves(int x, int y){
-	if (Pieces[Pieces.getX()][Pieces.getY()].getColor==1){
-	    if (Pieces[Pieces.getX()-1][Pieces.getY()-1]){
-	    }
+
+    //code doesn't work yet, need to think on it tonight
+    public void showValidMoves(int color){
+        if (color=0){    
+	    for (int rcount=0; rcount<8; rcount++){
+		for (int ccount=0; ccount<8; ccount++){
+		    Pieces mainX=Locations[x][y].getRow();
+		    Pieces mainY=Locations[x][y].getCol();
+
+		    try{
+			int[] neighbors={Locations[mainX-1][mainY-1].getColor(),
+					 Locations[mainX-1][mainY+1].getColor(),
+					 Locations[mainX-1][mainY-1].getColor(),
+					 Locations[mainX+1][mainY+1].getColor()
+			}
+		    }
+
+		    catch (ArrayIndexOutOfBoundsException e){}
+
+		    for (int count=0; count<4; count++){
+			if (neighbors[count]==null && neighbors[count]){
+				neighbors[count].setBorder(new LineBorder(Color.WHITE));				      
+			    }
+			    }
+		    }
+		}
 	}
     }
+    
     
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
