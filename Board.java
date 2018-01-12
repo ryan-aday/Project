@@ -27,21 +27,13 @@ public class Board extends JFrame implements MouseListener{
 	pane = this.getContentPane();
 	Locations = new Pieces[8][8];
 	pane.setLayout(new GridLayout(9,9));
-<<<<<<< HEAD
     blackRoll = new ImageIcon("darkGray.png");
-    Image blackTemp = blackRoll.getImage();
-    blackTemp = blackTemp.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-    blackRoll = new ImageIcon(blackTemp);
-    whiteRoll = new ImageIcon("lightGray.png");
-=======
-	blackRoll = new ImageIcon("darkGray.png");
 	whiteRoll = new ImageIcon("lightGray.jpg");
 	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	blackRoll = new ImageIcon(BTemp);
-        Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+    Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	whiteRoll = new ImageIcon(WTemp);
 	isBlackTurn = true;
->>>>>>> d154bd1ee4afc490d481cbffa2ac4277c059c468
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -122,8 +114,7 @@ public class Board extends JFrame implements MouseListener{
 			int[] neighbors={Locations[mainX-1][mainY-1].getColor(),
 					 Locations[mainX-1][mainY+1].getColor(),
 					 Locations[mainX-1][mainY-1].getColor(),
-					 Locations[mainX+1][mainY+1].getColor()
-			}
+					 Locations[mainX+1][mainY+1].getColor()}
 		    }
 
 		    catch (ArrayIndexOutOfBoundsException e){}
@@ -162,11 +153,8 @@ public class Board extends JFrame implements MouseListener{
     
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
-<<<<<<< HEAD
         m.setFocusPainted(false);
-=======
 	if (m.getIcon() == null){
->>>>>>> d154bd1ee4afc490d481cbffa2ac4277c059c468
         m.setIcon(blackRoll);
 	}
     }
