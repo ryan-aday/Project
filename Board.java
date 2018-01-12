@@ -128,6 +128,14 @@ public class Board extends JFrame implements MouseListener{
 		}
 	}
     }
+
+    public void flip(int x, int y){
+	if (Locations[x][y].getColor==0){
+	    Locations[x][y].setColor(1);
+	}else if (Locations[x][y].getColor==1){
+	    Locations[x][y].setColor(0);
+	}else{}
+    }
     
     
     public void isVictory(){
