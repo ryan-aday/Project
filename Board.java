@@ -1,11 +1,11 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JComponent;
+//import java.awt.Color;
+//import java.awt.Graphics;
+//import javax.swing.JComponent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.LineBorder;
-import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
@@ -17,17 +17,31 @@ public class Board extends JFrame implements MouseListener{
     private int blackNum;
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll;
+    private boolean isBlackTurn;
     
+    // public static int Player1=1;
+    //public static int Player2=2;
+    public int Player=1;
     
     public Board(){
 	pane = this.getContentPane();
 	Locations = new Pieces[8][8];
 	pane.setLayout(new GridLayout(9,9));
+<<<<<<< HEAD
     blackRoll = new ImageIcon("darkGray.png");
     Image blackTemp = blackRoll.getImage();
     blackTemp = blackTemp.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
     blackRoll = new ImageIcon(blackTemp);
     whiteRoll = new ImageIcon("lightGray.png");
+=======
+	blackRoll = new ImageIcon("darkGray.png");
+	whiteRoll = new ImageIcon("lightGray.jpg");
+	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+	blackRoll = new ImageIcon(BTemp);
+        Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+	whiteRoll = new ImageIcon(WTemp);
+	isBlackTurn = true;
+>>>>>>> d154bd1ee4afc490d481cbffa2ac4277c059c468
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
@@ -91,6 +105,40 @@ public class Board extends JFrame implements MouseListener{
         }
     }
 
+    public int getPlayer(){
+	return Player;
+    }
+
+
+    //code doesn't work yet, need to think on it tonight
+    public void showValidMoves(int color){
+        if (color=0){    
+	    for (int rcount=0; rcount<8; rcount++){
+		for (int ccount=0; ccount<8; ccount++){
+		    Pieces mainX=Locations[x][y].getRow();
+		    Pieces mainY=Locations[x][y].getCol();
+
+		    try{
+			int[] neighbors={Locations[mainX-1][mainY-1].getColor(),
+					 Locations[mainX-1][mainY+1].getColor(),
+					 Locations[mainX-1][mainY-1].getColor(),
+					 Locations[mainX+1][mainY+1].getColor()
+			}
+		    }
+
+		    catch (ArrayIndexOutOfBoundsException e){}
+
+		    for (int count=0; count<4; count++){
+			if (neighbors[count]==null && neighbors[count]){
+				neighbors[count].setBorder(new LineBorder(Color.WHITE));				      
+			    }
+			    }
+		    }
+		}
+	}
+    }
+    
+    
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
@@ -100,9 +148,6 @@ public class Board extends JFrame implements MouseListener{
 	}
     }
 
-    public void showValidMoves(int x, int y){
-    }
-    
     public void actionPerformed(ActionEvent e){
 	
     }
@@ -117,25 +162,46 @@ public class Board extends JFrame implements MouseListener{
     
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
+<<<<<<< HEAD
         m.setFocusPainted(false);
+=======
+	if (m.getIcon() == null){
+>>>>>>> d154bd1ee4afc490d481cbffa2ac4277c059c468
         m.setIcon(blackRoll);
+	}
     }
     
     public void mouseExited(MouseEvent e){
 	   Pieces m = (Pieces) e.getSource();
-        m.setIcon(null);
+	   if (m.getIcon() == blackRoll){
+	   m.setIcon(null);
+	   }
     }
     
     public void mouseClicked(MouseEvent e){
-        ImageIcon temp = new ImageIcon ("black.png");
-        Image image = temp.getImage();
-        Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon icon = new ImageIcon (newImage);
+        ImageIcon BTemp = new ImageIcon ("black.png");
+	ImageIcon WTemp = new ImageIcon ("white.png");
+	Image WImage = WTemp.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+        Image BImage = BTemp.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);;
+        ImageIcon BIcon = new ImageIcon (BImage);
+	ImageIcon WIcon = new ImageIcon (WImage);
         Pieces m = (Pieces) e.getSource();
+
+	if (isBlackTurn){
         m.setFocusPainted(false);
         m.setEnabled(false);
-		m.setDisabledIcon(icon);
-		m.setIcon(icon);
+	m.setDisabledIcon(BIcon);
+	m.setIcon(BIcon);
+	this.isBlackTurn = false;
+	}
+	
+	else {
+	    m.setFocusPainted(false);
+	    m.setEnabled(false);
+	    m.setDisabledIcon(WIcon);
+	    m.setIcon(WIcon);
+	    this.isBlackTurn = true;
+	}
     }
     
     public static void main(String[] args){
