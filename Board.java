@@ -96,62 +96,6 @@ public class Board extends JFrame implements MouseListener{
             }
         }
     }
-
-    public int getPlayer(){
-	return Player;
-    }
-
-
-    //code doesn't work yet, need to think on it tonight
-    public void showValidMoves(int color, int x, int y){
-        if ((x<8 && x>0) && (y<8 && y>0)){    
-	    // for (int rcount=0; rcount<8; rcount++){
-	    //	for (int ccount=0; ccount<8; ccount++){
-	    //	    Pieces mainX=Locations[x][y].getRow();
-	    //	    Pieces mainY=Locations[x][y].getCol();
-
-	    //    try{
-	    Pieces[] neighbors={Pieces[x-1][y-1],
-				   Pieces[x-1][y+1],
-				   Pieces[x+1][y-1],
-				   Pieces[x+1][y+1]};
-	    
-			//}
-	    
-			// catch (ArrayIndexOutOfBoundsException e){}
-		    
-	    for (int count=0; count<4; count++){
-		int[] NNeighbors=new int[4];
-		int col=neighbor[count].getCol();
-		int row=neighbor[count].getRow();
-		
-		NNeighbors[0]= Locations[col-1][row-1].getColor();
-		NNeighbors[1]= Locations[col-1][row+1].getColor();
-		NNeighbors[2]= Locations[col+1][row-1].getColor();
-		NNeighbors[3]= Locations[col+1][row+1].getColor();
-		
-		
-		if (neighbors[count].getColor()==null &&
-		    ((!NNeighbors[0].equals(neighbor[count]))||(NNeighbors!=color)) &&
-		    ((!NNeighbors[1].equals(neighbor[count]))||(NNeighbors!=color)) &&
-		    ((!NNeighbors[2].equals(neighbor[count]))||(NNeighbors!=color)) &&
-		    ((!NNeighbors[3].equals(neighbor[count]))||(NNeighbors!=color))
-		    ){
-		    neighbors[ct].setBorder(new LineBorder(Color.WHITE));			      
-		}
-	    }
-	}
-    }
-    
-
-
-    public void flip(int x, int y){
-	if (Locations[x][y].getColor==0){
-	    Locations[x][y].setColor(1);
-	}else if (Locations[x][y].getColor==1){
-	    Locations[x][y].setColor(0);
-	}else{}
-    }
     
     
     public void isVictory(){
