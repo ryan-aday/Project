@@ -9,6 +9,9 @@ import javax.swing.border.LineBorder;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
+import java.util.*;
+import java.lang.*;
+
 
 public class Board extends JFrame implements MouseListener{
     public Container pane;
@@ -17,28 +20,27 @@ public class Board extends JFrame implements MouseListener{
     private int blackNum;
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll;
-    private boolean isBlackTurn;
-    
-    // public static int Player1=1;
-    //public static int Player2=2;
-    public int Player=1;
-    
+    private boolean isBlackTurn=true;;
+        
     public Board(){
 	pane = this.getContentPane();
 	Locations = new Pieces[8][8];
 	pane.setLayout(new GridLayout(9,9));
-    blackRoll = new ImageIcon("darkGray.png");
+	blackRoll = new ImageIcon("darkGray.png");
 	whiteRoll = new ImageIcon("lightGray.jpg");
 	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	blackRoll = new ImageIcon(BTemp);
-    Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+	Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	whiteRoll = new ImageIcon(WTemp);
 	isBlackTurn = true;
+
+	
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
             Locations[i][c] = new Pieces(i,c);
             Locations[i][c].addMouseListener(this);
+	    Locations[i][c].setColor(-1);
 	    
 		if (i == 3 && c == 3){
 		    ImageIcon temp = new ImageIcon ("black.png");
@@ -49,6 +51,7 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setColor(0);
 		}
 		else if (i == 4 && c == 3){
 		    ImageIcon temp = new ImageIcon ("white.png");
@@ -59,6 +62,7 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setColor(1);
 		}
 		else if (i == 3 && c == 4){
 		    ImageIcon temp = new ImageIcon ("white.png");
@@ -69,6 +73,8 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setColor(1);
+				    
 		}
 		else if (i == 4 && c == 4){
 		    ImageIcon temp = new ImageIcon ("black.png");
@@ -79,14 +85,17 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setColor(0);
+
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
 		Locations[i][c].setBorder(new LineBorder(Color.BLACK));
 		pane.add(Locations[i][c]);
+		//isValidMove(0, Locations[i][c]);
 	    }
 	}
-	endTurn = new JButton("End Turn");
-	pane.add(endTurn);
+	//endTurn = new JButton("End Turn");
+	//pane.add(endTurn);
     }
     
     public void clearColor(JButton[][] a){
@@ -97,58 +106,67 @@ public class Board extends JFrame implements MouseListener{
         }
     }
 
-    public int getPlayer(){
-	return Player;
-    }
-
 
     //code doesn't work yet, need to think on it tonight
-    public void showValidMoves(int color, int x, int y){
-        if ((x<8 && x>0) && (y<8 && y>0)){    
+    public void isValidMove(int color, Pieces m){
+	int x=m.getCol();
+	int y=m.getRow();
+
+	
+	//if ((x<8 && x>-1) && (y<8 && y>-1) && Locations[x][y]!= null){    
 	    // for (int rcount=0; rcount<8; rcount++){
 	    //	for (int ccount=0; ccount<8; ccount++){
 	    //	    Pieces mainX=Locations[x][y].getRow();
 	    //	    Pieces mainY=Locations[x][y].getCol();
+	    
 
-	    //    try{
-	    Pieces[] neighbors={Pieces[x-1][y-1],
-				   Pieces[x-1][y+1],
-				   Pieces[x+1][y-1],
-				   Pieces[x+1][y+1]};
-	    
-			//}
-	    
-			// catch (ArrayIndexOutOfBoundsException e){}
-		    
-	    for (int count=0; count<4; count++){
-		int[] NNeighbors=new int[4];
-		int col=neighbor[count].getCol();
-		int row=neighbor[count].getRow();
-		
-		NNeighbors[0]= Locations[col-1][row-1].getColor();
-		NNeighbors[1]= Locations[col-1][row+1].getColor();
-		NNeighbors[2]= Locations[col+1][row-1].getColor();
-		NNeighbors[3]= Locations[col+1][row+1].getColor();
-		
-		
-		if (neighbors[count].getColor()==null &&
-		    ((!NNeighbors[0].equals(neighbor[count]))||(NNeighbors!=color)) &&
-		    ((!NNeighbors[1].equals(neighbor[count]))||(NNeighbors!=color)) &&
-		    ((!NNeighbors[2].equals(neighbor[count]))||(NNeighbors!=color)) &&
-		    ((!NNeighbors[3].equals(neighbor[count]))||(NNeighbors!=color))
-		    ){
-		    neighbors[ct].setBorder(new LineBorder(Color.WHITE));			      
-		}
-	    }
+	ArrayList<Pieces> neighbors=new ArrayList<Pieces>(4);
+	
+	try{
+	    neighbors.add(Locations[x-1][y-1]);
+	    System.out.println(neighbors.get(neighbors.size()-1).getRow()+ " " + neighbors.get(neighbors.size()-1).getCol());
 	}
-    }
-    
+	catch(NullPointerException first){}
+	catch(ArrayIndexOutOfBoundsException a){}
 
+	try{
+	    neighbors.add(Locations[x-1][y+1]);
+	    System.out.println(neighbors.get(neighbors.size()-1).getRow()+ " " + neighbors.get(neighbors.size()-1).getCol());
+	}
+	catch(NullPointerException second){}
+	catch(ArrayIndexOutOfBoundsException b){}
+	
+	try{
+	    neighbors.add(Locations[x+1][y-1]);
+	    System.out.println(neighbors.get(neighbors.size()-1).getRow()+ " " + neighbors.get(neighbors.size()-1).getCol());
+	}
+	catch(NullPointerException third){}
+	catch(ArrayIndexOutOfBoundsException c){}
+	
+	try{
+	    neighbors.add(Locations[x+1][y+1]);
+	    System.out.println(neighbors.get(neighbors.size()-1).getRow()+ " " + neighbors.get(neighbors.size()-1).getCol());
+	}
+	catch(NullPointerException fourth){}
+	catch(ArrayIndexOutOfBoundsException d){}
+
+	try{
+
+	    for (int count=0; count<neighbors.size(); count++){
+		System.out.println(neighbors.get(count).getRow()+ " " + neighbors.get(count).getCol());
+		if (neighbors.get(count).getColor()!= 0 && neighbors.get(count).getColor()!=1 && m.getColor()!=-1){
+		    neighbors.get(count).setBorder(new LineBorder(Color.BLUE));
+		    System.out.println("true");
+		}
+	    }System.out.println("false");
+	}
+	catch (NullPointerException Impossible){}
+    }
 
     public void flip(int x, int y){
-	if (Locations[x][y].getColor==0){
+	if (Locations[x][y].getColor()==0){
 	    Locations[x][y].setColor(1);
-	}else if (Locations[x][y].getColor==1){
+	}else if (Locations[x][y].getColor()==1){
 	    Locations[x][y].setColor(0);
 	}else{}
     }
@@ -167,9 +185,8 @@ public class Board extends JFrame implements MouseListener{
 	
     }
     
-    public void mousePressed(MouseEvent e){
-	   
-    }
+    public void mousePressed(MouseEvent e){}
+
     
     public void mouseReleased(MouseEvent e){
 	
@@ -179,8 +196,9 @@ public class Board extends JFrame implements MouseListener{
         Pieces m = (Pieces) e.getSource();
         m.setFocusPainted(false);
 	if (m.getIcon() == null){
-        m.setIcon(blackRoll);
+	    m.setIcon(blackRoll);
 	}
+	isValidMove(0,m);
     }
     
     public void mouseExited(MouseEvent e){
@@ -188,6 +206,7 @@ public class Board extends JFrame implements MouseListener{
 	   if (m.getIcon() == blackRoll){
 	   m.setIcon(null);
 	   }
+	   m.setBorder(new LineBorder(Color.BLACK));
     }
     
     public void mouseClicked(MouseEvent e){
@@ -199,22 +218,22 @@ public class Board extends JFrame implements MouseListener{
 	ImageIcon WIcon = new ImageIcon (WImage);
         Pieces m = (Pieces) e.getSource();
 
-	if (isBlackTurn){
-        m.setFocusPainted(false);
-        m.setEnabled(false);
-	m.setDisabledIcon(BIcon);
-	m.setIcon(BIcon);
-	this.isBlackTurn = false;
-	}
-	
-	else {
-	    m.setFocusPainted(false);
-	    m.setEnabled(false);
-	    m.setDisabledIcon(WIcon);
-	    m.setIcon(WIcon);
-	    this.isBlackTurn = true;
-	}
+	if (isBlackTurn && m.getColor()!=0 && m.getColor()!=1){
+		m.setFocusPainted(false);
+		m.setEnabled(false);
+		m.setDisabledIcon(BIcon);
+		m.setIcon(BIcon);
+		this.isBlackTurn = false;
+	}else if (!isBlackTurn && m.getColor()!=0 && m.getColor()!=1){
+		m.setFocusPainted(false);
+		m.setEnabled(false);
+		m.setDisabledIcon(WIcon);
+		m.setIcon(WIcon);
+		this.isBlackTurn = true;
+	}else{}
+	    
     }
+    
     
     public static void main(String[] args){
         Board g = new Board();
