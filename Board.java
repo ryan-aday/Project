@@ -96,66 +96,16 @@ public class Board extends JFrame implements MouseListener{
         }
     }
     
-    public boolean isValidMove(Pieces p){
+    public boolean East(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
-        int RowInc;
-        int ColInc;
-        if (isBlackTurn){
-            if (Locations[x + 1][y].getColor() == 1){
-                //checks the piece to the right
-                RowInc = 0;
-                ColInc = 2;
-                boolean stop = false;
-                for (int i = ColInc ;stop == false;i++){
-                    if (Locations[x + ColInc][y].getColor() == 0){
-                        return true;
-                    }
-                    else if (Locations[x + ColInc][y].getColor() == 2){
-                        break;
-                    }
+        if (isBlackTurn && Locations[y][x + 1].getColor() == 1){
+            for (int newCol = x + 2; newCol < 8; newCol ++){
+                if (Locations[y][newCol].getColor() == 2){
+                    return false;
                 }
-            }
-            else if (Locations[x - 1][y].getColor() == 1){
-                //checks the piece to the left
-                RowInc = 0;
-                ColInc = -2;
-                boolean stop = false;
-                for (int i = ColInc ;stop == false;i--){
-                    if (Locations[x + ColInc][y].getColor() == 0){
-                        return true;
-                    }
-                    else if (Locations[x + ColInc][y].getColor() == 2){
-                        break;
-                    }
-                }
-            }
-            else if (Locations[x][y + 1].getColor() == 1){
-                //checks the piece to the top
-                RowInc = 2;
-                ColInc = 0;
-                boolean stop = false;
-                for (int i = RowInc ;stop == false;i++){
-                    if (Locations[x][y + RowInc].getColor() == 0){
-                        return true;
-                    }
-                    else if (Locations[x][y + RowInc].getColor() == 2){
-                        break;
-                    }
-                }
-            }
-            else if (Locations[x][y + -1].getColor() == 1){
-                //checks the piece to the bottom
-                RowInc = -2;
-                ColInc = 0;
-                boolean stop = false;
-                for (int i = RowInc ;stop == false;i--){
-                    if (Locations[x][y + RowInc].getColor() == 0){
-                        return true;
-                    }
-                    else if (Locations[x][y + RowInc].getColor() == 2){
-                        break;
-                    }
+                if (Locations[y][newCol].getColor() == 0){
+                    return true;
                 }
             }
         }
@@ -186,9 +136,10 @@ public class Board extends JFrame implements MouseListener{
     
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
-	   if (m.getColor() == 2 && isValidMove(m)){
+	   if (m.getColor() == 2){
         m.setIcon(blackRoll);
         m.setFocusPainted(false);
+        System.out.println(isEast(m));
 	   }
     }
     
