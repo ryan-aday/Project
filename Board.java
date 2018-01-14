@@ -19,10 +19,6 @@ public class Board extends JFrame implements MouseListener{
     private ImageIcon blackRoll,whiteRoll;
     private boolean isBlackTurn;
     
-    // public static int Player1=1;
-    //public static int Player2=2;
-    public int Player=1;
-    
     public Board(){
 	pane = this.getContentPane();
 	Locations = new Pieces[8][8];
@@ -37,9 +33,8 @@ public class Board extends JFrame implements MouseListener{
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
-            Locations[i][c] = new Pieces(i,c);
+            Locations[i][c] = new Pieces(c,i);
             Locations[i][c].addMouseListener(this);
-	    
 		if (i == 3 && c == 3){
 		    ImageIcon temp = new ImageIcon ("black.png");
 		    Image image = temp.getImage();
@@ -49,6 +44,7 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+            Locations[i][c].setColor(0);
 		}
 		else if (i == 4 && c == 3){
 		    ImageIcon temp = new ImageIcon ("white.png");
@@ -59,6 +55,7 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+            Locations[i][c].setColor(1);
 		}
 		else if (i == 3 && c == 4){
 		    ImageIcon temp = new ImageIcon ("white.png");
@@ -69,6 +66,7 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+            Locations[i][c].setColor(1);
 		}
 		else if (i == 4 && c == 4){
 		    ImageIcon temp = new ImageIcon ("black.png");
@@ -79,6 +77,7 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(icon);
 		    Locations[i][c].setIcon(icon);
+            Locations[i][c].setColor(0);
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
 		Locations[i][c].setBorder(new LineBorder(Color.BLACK));
@@ -95,6 +94,30 @@ public class Board extends JFrame implements MouseListener{
                 a[i][c].setBorder(new LineBorder(Color.BLACK));
             }
         }
+    }
+    
+    public boolean isValidMove(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        int RowInc;
+        int ColInc;
+        if (isBlackTurn){
+            if (Locations[x + 1][y].getColor() == 1){
+                //checks the piece to the right
+                RowInc = 0;
+                ColInc = 2;
+                boolean stop = false;
+                for (int i = ColInc ;stop == false;i++){
+                    if (Locations[x + ColInc][y].getColor() == 0){
+                        return true;
+                    }
+                    else if (Locations[x + ColInc][y].getColor() == 2){
+                        return false;
+                    }
+                }
+            }
+        }
+        return false;
     }
     
     
@@ -121,16 +144,17 @@ public class Board extends JFrame implements MouseListener{
     
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
-        m.setFocusPainted(false);
-	if (m.getIcon() == null){
+	   if (m.getColor() == 2 && isValidMove(m)){
         m.setIcon(blackRoll);
-	}
+        m.setFocusPainted(false);
+	   }
     }
     
     public void mouseExited(MouseEvent e){
 	   Pieces m = (Pieces) e.getSource();
 	   if (m.getIcon() == blackRoll){
-	   m.setIcon(null);
+	       m.setIcon(null);
+           m.setColor(2);
 	   }
     }
     
@@ -142,10 +166,11 @@ public class Board extends JFrame implements MouseListener{
         ImageIcon BIcon = new ImageIcon (BImage);
 	ImageIcon WIcon = new ImageIcon (WImage);
         Pieces m = (Pieces) e.getSource();
-
+        System.out.println(m.getColor());
 	if (isBlackTurn){
-        m.setFocusPainted(false);
-        m.setEnabled(false);
+        m.setColor(0);
+    m.setFocusPainted(false);
+    m.setEnabled(false);
 	m.setDisabledIcon(BIcon);
 	m.setIcon(BIcon);
 	this.isBlackTurn = false;
@@ -156,9 +181,11 @@ public class Board extends JFrame implements MouseListener{
 	    m.setEnabled(false);
 	    m.setDisabledIcon(WIcon);
 	    m.setIcon(WIcon);
+        m.setColor(1);
 	    this.isBlackTurn = true;
 	}
     }
+    
     
     public static void main(String[] args){
         Board g = new Board();
