@@ -98,9 +98,6 @@ public class Board extends JFrame implements MouseListener{
                 if (Locations[y][newCol].getColor() == 0){
                     return true;
                 }
-                Locations[y][newCol].setIcon(BlackIcon);
-                Locations[y][newCol].setDisabledIcon(BlackIcon);
-                Locations[y][newCol].setColor(0);
             }
         }
         else if (isBlackTurn == false && Locations[y][x + 1].getColor() == 0){
@@ -300,6 +297,16 @@ public class Board extends JFrame implements MouseListener{
     
     public boolean isValidMove(Pieces p){
         return(East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p));
+    }
+    
+    public void flip(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn){
+            if (East(p)){
+                
+            }
+        }
     }
     
     public void isVictory(){
