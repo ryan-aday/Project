@@ -16,7 +16,7 @@ public class Board extends JFrame implements MouseListener{
     private JButton endTurn;
     private int blackNum;
     private int whiteNum;
-    private ImageIcon blackRoll,whiteRoll;
+    private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn;
     
     public Board(){
@@ -24,59 +24,50 @@ public class Board extends JFrame implements MouseListener{
 	Locations = new Pieces[8][8];
 	pane.setLayout(new GridLayout(9,9));
     blackRoll = new ImageIcon("darkGray.png");
-	whiteRoll = new ImageIcon("lightGray.jpg");
+	whiteRoll = new ImageIcon("lightGray.png");
 	Image BTemp = blackRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	blackRoll = new ImageIcon(BTemp);
     Image WTemp = whiteRoll.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	whiteRoll = new ImageIcon(WTemp);
+    BlackIcon = new ImageIcon("black.png");
+    Image BImage = BlackIcon.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+    BlackIcon = new ImageIcon (BImage);
+    WhiteIcon = new ImageIcon("white.png");
+    Image WImage = WhiteIcon.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
+    WhiteIcon = new ImageIcon (WImage);
 	isBlackTurn = true;
 	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
             Locations[i][c] = new Pieces(c,i);
             Locations[i][c].addMouseListener(this);
+            Locations[i][c].setEnabled(false);
 		if (i == 3 && c == 3){
-		    ImageIcon temp = new ImageIcon ("black.png");
-		    Image image = temp.getImage();
-		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
-		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setDisabledIcon(BlackIcon);
+		    Locations[i][c].setIcon(BlackIcon);
             Locations[i][c].setColor(0);
 		}
 		else if (i == 4 && c == 3){
-		    ImageIcon temp = new ImageIcon ("white.png");
-		    Image image = temp.getImage();
-		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
-		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setDisabledIcon(WhiteIcon);
+		    Locations[i][c].setIcon(WhiteIcon);
             Locations[i][c].setColor(1);
 		}
 		else if (i == 3 && c == 4){
-		    ImageIcon temp = new ImageIcon ("white.png");
-		    Image image = temp.getImage();
-		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
-		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setDisabledIcon(WhiteIcon);
+		    Locations[i][c].setIcon(WhiteIcon);
             Locations[i][c].setColor(1);
 		}
 		else if (i == 4 && c == 4){
-		    ImageIcon temp = new ImageIcon ("black.png");
-		    Image image = temp.getImage();
-		    Image newImage = image.getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-		    ImageIcon icon = new ImageIcon (newImage);
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(icon);
-		    Locations[i][c].setIcon(icon);
+		    Locations[i][c].setDisabledIcon(BlackIcon);
+		    Locations[i][c].setIcon(BlackIcon);
             Locations[i][c].setColor(0);
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
@@ -109,6 +100,16 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
         }
+        else if (isBlackTurn == false && Locations[y][x + 1].getColor() == 0){
+            for (int newCol = x + 2; newCol < 8; newCol ++){
+                if (Locations[y][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[y][newCol].getColor() == 1){
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
@@ -121,6 +122,16 @@ public class Board extends JFrame implements MouseListener{
                     return false;
                 }
                 if (Locations[y][newCol].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        else if (isBlackTurn == false && Locations[y][x - 1].getColor() == 0){
+            for (int newCol = x - 2; newCol > 0; newCol --){
+                if (Locations[y][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[y][newCol].getColor() == 1){
                     return true;
                 }
             }
@@ -141,6 +152,16 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
         }
+        else if (isBlackTurn == false && Locations[y - 1][x].getColor() == 0){
+            for (int newRow = y - 2; newRow > 0; newRow --){
+                if (Locations[newRow][x].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][x].getColor() == 1){
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
@@ -153,6 +174,16 @@ public class Board extends JFrame implements MouseListener{
                     return false;
                 }
                 if (Locations[newRow][x].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        else if (isBlackTurn == false && Locations[y + 1][x].getColor() == 0){
+            for (int newRow = y + 2; newRow < 8; newRow ++){
+                if (Locations[newRow][x].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][x].getColor() == 1){
                     return true;
                 }
             }
@@ -173,11 +204,99 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
         }
+        else if (isBlackTurn == false && Locations[y - 1][x + 1].getColor() == 0){
+            for (int newRow = y - 2, newCol = x + 2 ; newRow > 0 && newCol < 8; newRow --, newCol++){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 1){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean NorthWest(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn && Locations[y - 1][x - 1].getColor() == 1){
+            for (int newRow = y - 2, newCol = x - 2 ; newRow > 0 && newCol > 0; newRow --, newCol--){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        else if (isBlackTurn == false && Locations[y - 1][x - 1].getColor() == 0){
+            for (int newRow = y - 2, newCol = x - 2 ; newRow > 0 && newCol > 0; newRow --, newCol--){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 1){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean SouthEast(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn && Locations[y + 1][x + 1].getColor() == 1){
+            for (int newRow = y + 2, newCol = x + 2 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        else if (isBlackTurn == false && Locations[y + 1][x + 1].getColor() == 0){
+            for (int newRow = y + 2, newCol = x + 2 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 1){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean SouthWest(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn && Locations[y + 1][x - 1].getColor() == 1){
+            for (int newRow = y + 2, newCol = x - 2 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        else if (isBlackTurn == false && Locations[y + 1][x - 1].getColor() == 0){
+            for (int newRow = y + 2, newCol = x - 2 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 1){
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
     public boolean isValidMove(Pieces p){
-        return(East(p) || West(p) || North(p) || South(p) || NorthEast(p));
+        return(East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p));
     }
     
     public void isVictory(){
@@ -203,43 +322,44 @@ public class Board extends JFrame implements MouseListener{
     
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
-	   if (m.getColor() == 2 && isValidMove(m)){
+	   if (m.getColor() == 2 && isValidMove(m) && isBlackTurn){
+        m.setEnabled(true);
         m.setIcon(blackRoll);
         m.setFocusPainted(false);
 	   }
+        else if (m.getColor() == 2 && isValidMove(m) && isBlackTurn == false){
+            m.setEnabled(true);
+            m.setIcon(whiteRoll);
+            m.setFocusPainted(false);
+        }
     }
     
     public void mouseExited(MouseEvent e){
 	   Pieces m = (Pieces) e.getSource();
-	   if (m.getIcon() == blackRoll){
+	   if (m.getIcon() == blackRoll || m.getIcon() == whiteRoll){
+           m.setEnabled(false);
 	       m.setIcon(null);
            m.setColor(2);
 	   }
     }
     
     public void mouseClicked(MouseEvent e){
-        ImageIcon BTemp = new ImageIcon ("black.png");
-	ImageIcon WTemp = new ImageIcon ("white.png");
-	Image WImage = WTemp.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
-        Image BImage = BTemp.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);;
-        ImageIcon BIcon = new ImageIcon (BImage);
-	ImageIcon WIcon = new ImageIcon (WImage);
-        Pieces m = (Pieces) e.getSource();
-        System.out.println(m.getColor());
-	if (isBlackTurn){
-        m.setColor(0);
+    Pieces m = (Pieces) e.getSource();
+    System.out.println(m.getColor());
+	if (isBlackTurn && m.isEnabled()){
+    m.setColor(0);
     m.setFocusPainted(false);
     m.setEnabled(false);
-	m.setDisabledIcon(BIcon);
-	m.setIcon(BIcon);
+	m.setDisabledIcon(BlackIcon);
+	m.setIcon(BlackIcon);
 	this.isBlackTurn = false;
 	}
 	
-	else {
+	else if (isBlackTurn == false && m.isEnabled()){
 	    m.setFocusPainted(false);
 	    m.setEnabled(false);
-	    m.setDisabledIcon(WIcon);
-	    m.setIcon(WIcon);
+	    m.setDisabledIcon(WhiteIcon);
+	    m.setIcon(WhiteIcon);
         m.setColor(1);
 	    this.isBlackTurn = true;
 	}
