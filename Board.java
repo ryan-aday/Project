@@ -87,6 +87,16 @@ public class Board extends JFrame implements MouseListener{
         }
     }
     
+    public boolean isBorderPiece(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+    }
+    
+    public boolean isCornerPiece(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+    }
+    
     public boolean East(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
