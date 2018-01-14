@@ -98,6 +98,9 @@ public class Board extends JFrame implements MouseListener{
                 if (Locations[y][newCol].getColor() == 0){
                     return true;
                 }
+                Locations[y][newCol].setIcon(BlackIcon);
+                Locations[y][newCol].setDisabledIcon(BlackIcon);
+                Locations[y][newCol].setColor(0);
             }
         }
         else if (isBlackTurn == false && Locations[y][x + 1].getColor() == 0){
@@ -352,6 +355,7 @@ public class Board extends JFrame implements MouseListener{
     m.setEnabled(false);
 	m.setDisabledIcon(BlackIcon);
 	m.setIcon(BlackIcon);
+    East(m);
 	this.isBlackTurn = false;
 	}
 	
