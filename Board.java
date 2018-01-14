@@ -160,6 +160,26 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    public boolean NorthEast(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn && Locations[y - 1][x + 1].getColor() == 1){
+            for (int newRow = y - 2, newCol = x + 2 ; newRow > 0 && newCol < 8; newRow --, newCol++){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][newCol].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean isValidMove(Pieces p){
+        return(East(p) || West(p) || North(p) || South(p) || NorthEast(p));
+    }
+    
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
@@ -183,11 +203,9 @@ public class Board extends JFrame implements MouseListener{
     
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
-	   if (m.getColor() == 2){
+	   if (m.getColor() == 2 && isValidMove(m)){
         m.setIcon(blackRoll);
         m.setFocusPainted(false);
-        System.out.println(North(m));
-        System.out.println(South(m));
 	   }
     }
     
