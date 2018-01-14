@@ -304,10 +304,109 @@ public class Board extends JFrame implements MouseListener{
         int y = p.getRow();
         if (isBlackTurn){
             if (East(p)){
-                
+                for (int newCol = x + 1; newCol < 8; newCol ++){
+                    if (Locations[y][newCol].getColor() == 1){
+                        Locations[y][newCol].setColor(0);
+                        Locations[y][newCol].setDisabledIcon(BlackIcon);
+                        Locations[y][newCol].setIcon(BlackIcon);
+                    }
+                    else {
+                        return;
+                    }
+                }
+            }
+            else if (West(p)){
+                for (int newCol = x - 1; newCol > 0; newCol --){
+                if (Locations[y][newCol].getColor() == 1){
+                    Locations[y][newCol].setColor(0);
+                    Locations[y][newCol].setDisabledIcon(BlackIcon);
+                    Locations[y][newCol].setIcon(BlackIcon);
+                }
+                else {
+                    return; 
+                }
+                }
+            }
+            
+            else if (North(p)){
+                for (int newRow = y - 1; newRow > 0; newRow --){
+                if (Locations[newRow][x].getColor() == 1){
+                    Locations[newRow][x].setColor(0);
+                    Locations[newRow][x].setDisabledIcon(BlackIcon);
+                    Locations[newRow][x].setIcon(BlackIcon);
+                }
+                    else {
+                        return;
+                    }
+            }
+            }
+            
+            else if (South(p)){
+                for (int newRow = y + 1; newRow < 8; newRow ++){
+                if (Locations[newRow][x].getColor() == 1){
+                    Locations[newRow][x].setColor(0);
+                    Locations[newRow][x].setDisabledIcon(BlackIcon);
+                    Locations[newRow][x].setIcon(BlackIcon);
+                }
+                    else {
+                        return;
+                    }
+            }
+            }
+            
+            else if (NorthEast(p)){
+                for (int newRow = y - 1, newCol = x + 1 ; newRow > 0 && newCol < 8; newRow --, newCol++){
+                if (Locations[newRow][newCol].getColor() == 1){
+                    Locations[newRow][newCol].setColor(0);
+                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
+                    Locations[newRow][newCol].setIcon(BlackIcon);
+                }
+                    else {
+                        return;
+                    }
+                }
+            }
+            
+            else if (NorthWest(p)){
+                for (int newRow = y - 1, newCol = x - 1 ; newRow > 0 && newCol > 0; newRow --, newCol--){
+                if (Locations[newRow][newCol].getColor() == 1){
+                    Locations[newRow][newCol].setColor(0);
+                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
+                    Locations[newRow][newCol].setIcon(BlackIcon);
+                }
+                else {
+                    return;
+                }
+            }
+            }
+            
+            else if (SouthEast(p)){
+                for (int newRow = y + 1, newCol = x + 1 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
+                if (Locations[newRow][newCol].getColor() == 1){
+                    Locations[newRow][newCol].setColor(0);
+                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
+                    Locations[newRow][newCol].setIcon(BlackIcon);
+                }
+                else {
+                    return;
+                }
+            }
+            }
+            
+            else if (SouthWest(p)){
+                for (int newRow = y + 1, newCol = x - 1 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
+                if (Locations[newRow][newCol].getColor() == 2){
+                    Locations[newRow][newCol].setColor(0);
+                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
+                    Locations[newRow][newCol].setIcon(BlackIcon);
+                }
+                else {
+                    return;
+                }
+            }
+            }
             }
         }
-    }
     
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
@@ -356,12 +455,14 @@ public class Board extends JFrame implements MouseListener{
     public void mouseClicked(MouseEvent e){
     Pieces m = (Pieces) e.getSource();
     System.out.println(m.getColor());
+        
 	if (isBlackTurn && m.isEnabled()){
     m.setColor(0);
     m.setFocusPainted(false);
     m.setEnabled(false);
 	m.setDisabledIcon(BlackIcon);
 	m.setIcon(BlackIcon);
+    flip(m);
     East(m);
 	this.isBlackTurn = false;
 	}
