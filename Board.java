@@ -315,7 +315,7 @@ public class Board extends JFrame implements MouseListener{
                     }
                 }
             }
-            else if (West(p)){
+            if (West(p)){
                 for (int newCol = x - 1; newCol > 0; newCol --){
                 if (Locations[y][newCol].getColor() == 1){
                     Locations[y][newCol].setColor(0);
@@ -328,7 +328,7 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             
-            else if (North(p)){
+            if (North(p)){
                 for (int newRow = y - 1; newRow > 0; newRow --){
                 if (Locations[newRow][x].getColor() == 1){
                     Locations[newRow][x].setColor(0);
@@ -341,7 +341,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (South(p)){
+            if (South(p)){
                 for (int newRow = y + 1; newRow < 8; newRow ++){
                 if (Locations[newRow][x].getColor() == 1){
                     Locations[newRow][x].setColor(0);
@@ -354,7 +354,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (NorthEast(p)){
+            if (NorthEast(p)){
                 for (int newRow = y - 1, newCol = x + 1 ; newRow > 0 && newCol < 8; newRow --, newCol++){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
@@ -367,7 +367,7 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             
-            else if (NorthWest(p)){
+            if (NorthWest(p)){
                 for (int newRow = y - 1, newCol = x - 1 ; newRow > 0 && newCol > 0; newRow --, newCol--){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
@@ -380,7 +380,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (SouthEast(p)){
+            if (SouthEast(p)){
                 for (int newRow = y + 1, newCol = x + 1 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
@@ -393,7 +393,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (SouthWest(p)){
+            if (SouthWest(p)){
                 for (int newRow = y + 1, newCol = x - 1 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
@@ -406,7 +406,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             }
-        else if (isBlackTurn == false){
+        if (isBlackTurn == false){
             if (East(p)){
                 for (int newCol = x + 1; newCol < 8; newCol ++){
                     if (Locations[y][newCol].getColor() == 0){
@@ -419,7 +419,7 @@ public class Board extends JFrame implements MouseListener{
                     }
                 }
             }
-            else if (West(p)){
+            if (West(p)){
                 for (int newCol = x - 1; newCol > 0; newCol --){
                 if (Locations[y][newCol].getColor() == 0){
                     Locations[y][newCol].setColor(1);
@@ -432,7 +432,7 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             
-            else if (North(p)){
+            if (North(p)){
                 for (int newRow = y - 1; newRow > 0; newRow --){
                 if (Locations[newRow][x].getColor() == 0){
                     Locations[newRow][x].setColor(1);
@@ -445,7 +445,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (South(p)){
+            if (South(p)){
                 for (int newRow = y + 1; newRow < 8; newRow ++){
                 if (Locations[newRow][x].getColor() == 0){
                     Locations[newRow][x].setColor(1);
@@ -458,7 +458,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (NorthEast(p)){
+            if (NorthEast(p)){
                 for (int newRow = y - 1, newCol = x + 1 ; newRow > 0 && newCol < 8; newRow --, newCol++){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
@@ -471,7 +471,7 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             
-            else if (NorthWest(p)){
+             if (NorthWest(p)){
                 for (int newRow = y - 1, newCol = x - 1 ; newRow > 0 && newCol > 0; newRow --, newCol--){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
@@ -484,7 +484,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (SouthEast(p)){
+            if (SouthEast(p)){
                 for (int newRow = y + 1, newCol = x + 1 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
@@ -497,7 +497,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             
-            else if (SouthWest(p)){
+             if (SouthWest(p)){
                 for (int newRow = y + 1, newCol = x - 1 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
