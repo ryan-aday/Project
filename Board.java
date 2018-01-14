@@ -112,6 +112,53 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    public boolean West(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn && Locations[y][x - 1].getColor() == 1){
+            for (int newCol = x - 2; newCol > 0; newCol --){
+                if (Locations[y][newCol].getColor() == 2){
+                    return false;
+                }
+                if (Locations[y][newCol].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean North(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn && Locations[y - 1][x].getColor() == 1){
+            for (int newRow = y - 2; newRow > 0; newRow --){
+                if (Locations[newRow][x].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][x].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean South(Pieces p){
+        int x = p.getCol();
+        int y = p.getRow();
+        if (isBlackTurn && Locations[y + 1][x].getColor() == 1){
+            for (int newRow = y + 2; newRow < 8; newRow ++){
+                if (Locations[newRow][x].getColor() == 2){
+                    return false;
+                }
+                if (Locations[newRow][x].getColor() == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
@@ -139,7 +186,8 @@ public class Board extends JFrame implements MouseListener{
 	   if (m.getColor() == 2){
         m.setIcon(blackRoll);
         m.setFocusPainted(false);
-        System.out.println(isEast(m));
+        System.out.println(North(m));
+        System.out.println(South(m));
 	   }
     }
     
