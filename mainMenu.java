@@ -9,8 +9,7 @@ import javax.imageio.ImageIO;
 public class mainMenu extends JFrame{
     private Container pane;
 
-    private JButton StartGame;
-    private JLabel background;
+    private JButton StartGame, manual;
 
     private ImageIcon logo;
     private JLabel logoLabel;
@@ -57,9 +56,19 @@ public class mainMenu extends JFrame{
 		    Board.main(new String[0]);
 		}
 	    });
+
+	manual=new JButton("Manual- For the Sad Bois");
+	manual.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e)
+		{
+		    CloseFrame();
+		    Manual.main(new String[0]);
+		}
+	    });
 	pane.add(p1);
 	pane.add(p2);
 	pane.add(StartGame);
+	pane.add(manual);	
     }
 
 
