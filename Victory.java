@@ -69,7 +69,8 @@ public class Victory extends JFrame{
         pane.add(toMain);
 
     }
-
+    
+    //USeless for now, might use for future fanciness
     private void mouseClicked(MouseEvent e){
     }
    
@@ -85,6 +86,7 @@ public class Victory extends JFrame{
     private void ActionPerformed(ActionEvent ae){
     }
 
+    //Used to close Window
     public void CloseFrame(){
 	super.dispose();
     }
