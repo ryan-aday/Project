@@ -17,7 +17,8 @@ public class Pieces extends JButton{
         this.y = y;
         this.color = 2;
     }
-    
+
+    //Location Variables
     public int getRow(){
 	return y;
     }
@@ -26,6 +27,7 @@ public class Pieces extends JButton{
 	return x;
     }
 
+    //For chanigng attributes for diff players
     public int getColor(){
 	return color;
     }
