@@ -12,12 +12,13 @@ import java.io.*;
 
 public class Board extends JFrame implements MouseListener{
     public Container pane;
-    private Pieces[][] Locations;
+    private static Pieces[][] Locations;
     private JButton demoVictoryB, demoVictoryW;
     private int blackNum;
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn;
+
 
 
     //Board Setup
@@ -116,8 +117,6 @@ public class Board extends JFrame implements MouseListener{
 	pane.add(demoVictoryW);
 
     }
-	    
-	    
 
 
     //For when mouse hovers over pieces
@@ -573,9 +572,39 @@ public class Board extends JFrame implements MouseListener{
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
 		if (Locations[rcount][ccount].getColor()==2){
-		}else Victory.main(new String[0]);
+		    break;
+		}
 	    }
-	}
+	}CloseFrame();
+	Victory.main(new String[0]);
+    }
+
+    //For closing Frame once victory conditions met
+    public void CloseFrame(){
+	super.dispose();
+    }
+
+    //Reports how many Black and White Pieces
+    public static int checkB(){
+	int B=0;
+	for (int r=0; r<8; r++){
+	    for (int c=0; c<8; c++){
+		if (Locations[r][c].getColor()==0){
+		    B++;
+		}
+	    }
+	}return B;
+    }
+
+    public static int checkW(){
+	int W=0;
+	for (int r=0; r<8; r++){
+	    for (int c=0; c<8; c++){
+		if (Locations[r][c].getColor()==1){
+		    W++;
+		}
+	    }
+	}return W;
     }
 
     //Empty Methods due to abstract class, for extra features if we have time
