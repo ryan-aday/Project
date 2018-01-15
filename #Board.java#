@@ -18,9 +18,7 @@ public class Board extends JFrame implements MouseListener{
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn;
-
-
-    //Board Setup
+    
     public Board(){
 	pane = this.getContentPane();
 	Locations = new Pieces[8][8];
@@ -38,8 +36,7 @@ public class Board extends JFrame implements MouseListener{
 	Image WImage = WhiteIcon.getImage().getScaledInstance(60,60, java.awt.Image.SCALE_SMOOTH);
 	WhiteIcon = new ImageIcon (WImage);
 	isBlackTurn = true;
-
-	//Preset Locations for Starting Pieces
+	
 	for (int i = 0;i < Locations.length;i ++){
 	    for (int c = 0; c < Locations[i].length;c ++){
             Locations[i][c] = new Pieces(c,i);
@@ -81,9 +78,7 @@ public class Board extends JFrame implements MouseListener{
 	endTurn = new JButton("End Turn");
 	pane.add(endTurn);
     }
-
-
-    //For when mouse hovers over pieces
+    
     public void clearColor(JButton[][] a){
         for (int i = 0;i < a.length; i++){
             for (int c = 0;c < a[i].length; c++){
@@ -101,8 +96,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
     }
-
-    //Asks if Player  Pieces are in certain locations
+    
     public boolean East(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -527,9 +521,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         }
-
     
-    //Victory Conditions
     public void isVictory(){
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
@@ -539,7 +531,6 @@ public class Board extends JFrame implements MouseListener{
 	}
     }
 
-    //Empty Methods due to abstract class, for extra features if we have time
     public void actionPerformed(ActionEvent e){
 	
     }
@@ -551,8 +542,7 @@ public class Board extends JFrame implements MouseListener{
     public void mouseReleased(MouseEvent e){
 	
     }
-
-    //Mouse Methods for when Mouse enters Field
+    
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
 	   if (m.getColor() == 2 && isValidMove(m) && isBlackTurn){
@@ -581,13 +571,13 @@ public class Board extends JFrame implements MouseListener{
     System.out.println(m.getColor());
         
 	if (isBlackTurn && m.isEnabled()){
-    m.setColor(0);
-    m.setFocusPainted(false);
-    m.setEnabled(false);
-	m.setDisabledIcon(BlackIcon);
-	m.setIcon(BlackIcon);
-    flip(m);
-	this.isBlackTurn = false;
+	    m.setColor(0);
+	    m.setFocusPainted(false);
+	    m.setEnabled(false);
+	    m.setDisabledIcon(BlackIcon);
+	    m.setIcon(BlackIcon);
+	    flip(m);
+	    this.isBlackTurn = false;
 	}
 	
 	else if (isBlackTurn == false && m.isEnabled()){
@@ -595,8 +585,8 @@ public class Board extends JFrame implements MouseListener{
 	    m.setEnabled(false);
 	    m.setDisabledIcon(WhiteIcon);
 	    m.setIcon(WhiteIcon);
-        m.setColor(1);
-        flip(m);
+	    m.setColor(1);
+	    flip(m);
 	    this.isBlackTurn = true;
 	}
     }
