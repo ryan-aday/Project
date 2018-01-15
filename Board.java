@@ -1,11 +1,7 @@
-//import java.awt.Color;
-//import java.awt.Graphics;
-//import javax.swing.JComponent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.LineBorder;
-//import javax.swing.ImageIcon;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
