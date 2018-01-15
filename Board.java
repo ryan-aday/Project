@@ -163,6 +163,7 @@ public class Board extends JFrame implements MouseListener{
     }
     
     //Asks if Player  Pieces are in certain locations
+    //checks the rightside of the piece 
     public boolean East(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -189,6 +190,7 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    //checks the left side of the piece
     public boolean West(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -215,6 +217,7 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    //checks the top side of the piece
     public boolean North(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -241,6 +244,7 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    //checks the bottom side of the piece
     public boolean South(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -267,6 +271,7 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    //checks the top-right side of the piece
     public boolean NorthEast(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -293,6 +298,7 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    //checks the top-left side of the piece
     public boolean NorthWest(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -319,6 +325,7 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    //checks the bottom-right side of the piece
     public boolean SouthEast(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
@@ -345,6 +352,7 @@ public class Board extends JFrame implements MouseListener{
         return false;
     }
     
+    //checks the bottom-left side of the piece 
     public boolean SouthWest(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
