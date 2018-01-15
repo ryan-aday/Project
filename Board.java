@@ -19,6 +19,9 @@ public class Board extends JFrame implements MouseListener{
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn=true;
 
+    public static String p1="";
+    public static String p2="";
+    
     private JTextField victor, numB, numW, turn;
     private String v="";
 
@@ -120,18 +123,18 @@ public class Board extends JFrame implements MouseListener{
 	if (checkB()==checkW()){
 	    v="DRAW";
 	} else if (checkB()>checkW()){
-	    v="BLACK";
-	}else v="WHITE";
+	    v=p1;
+	}else v=p2;
 	
 	
 	victor= new JTextField("WINNING: " +v);
 	pane.add(victor);
 
 
-	numB= new JTextField("Black; "+checkB());
+	numB= new JTextField(p1+": "+checkB());
 	pane.add(numB);
 
-	numW= new JTextField("White: "+checkW());
+	numW= new JTextField(p2+": "+checkW());
 	pane.add(numW);
 
 	turn= new JTextField("Turn: "+checkTurn());
@@ -635,10 +638,18 @@ public class Board extends JFrame implements MouseListener{
     public String checkTurn(){
 	String t="";
 	if (isBlackTurn){
-	    t="BLACK";
+	    t=p1;
 	}else{
-	    t="WHITE";
+	    t=p2;
 	}return t;
+    }
+
+    public static String getP1(){
+	return p1;
+    }
+
+    public static String getP2(){
+	return p2;
     }
 
     //Empty Methods due to abstract class, for extra features if we have time
@@ -707,19 +718,19 @@ public class Board extends JFrame implements MouseListener{
     	if (checkB()==checkW()){
 	    v="DRAW";
 	} else if (checkB()>checkW()){
-	    v="BLACK";
-	}else v="WHITE";
+	    v=p1;
+	}else v=p2;
 	
 	this.remove(victor);	
 	victor= new JTextField("WINNING: " +v);
 	this.add(victor);
 
 	this.remove(numB);
-	numB= new JTextField("Black; "+checkB());
+	numB= new JTextField(p1+": "+checkB());
 	this.add(numB);
 	
 	this.remove(numW);
-	numW= new JTextField("White: "+checkW());
+	numW= new JTextField(p2+": "+checkW());
 	this.add(numW);
 
 	this.remove(turn);
