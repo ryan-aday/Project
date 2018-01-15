@@ -81,7 +81,7 @@ public class Board extends JFrame implements MouseListener{
 	}
 
 	//Demo Button to simulate a total Black Win
-	JButton demoVictoryB= new JButton("BWin");
+	/*JButton demoVictoryB= new JButton("BWin");
 	demoVictoryB.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
@@ -115,7 +115,7 @@ public class Board extends JFrame implements MouseListener{
 		}
 	    });
 	pane.add(demoVictoryW);
-
+	*/
     }
 
 
@@ -569,14 +569,18 @@ public class Board extends JFrame implements MouseListener{
     
     //Victory Conditions
     public void isVictory(){
+	int count=0;
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
 		if (Locations[rcount][ccount].getColor()==2){
-		    break;
+		    count++;
 		}
 	    }
-	}CloseFrame();
-	Victory.main(new String[0]);
+	}
+	if (count==0){
+	    CloseFrame();
+	    Victory.main(new String[0]);
+	}
     }
 
     //For closing Frame once victory conditions met
@@ -649,24 +653,26 @@ public class Board extends JFrame implements MouseListener{
     System.out.println(m.getColor());
         
     if (isBlackTurn && m.isEnabled()){
-    m.setColor(0);
-    m.setFocusPainted(false);
-    m.setEnabled(false);
+	m.setColor(0);
+	m.setFocusPainted(false);
+	m.setEnabled(false);
 	m.setDisabledIcon(BlackIcon);
 	m.setIcon(BlackIcon);
-    flip(m);
+	flip(m);
 	this.isBlackTurn = false;
-	}
-	
-	else if (isBlackTurn == false && m.isEnabled()){
-	    m.setFocusPainted(false);
-	    m.setEnabled(false);
-	    m.setDisabledIcon(WhiteIcon);
-	    m.setIcon(WhiteIcon);
+	isVictory();
+    }
+    
+    else if (isBlackTurn == false && m.isEnabled()){
+	m.setFocusPainted(false);
+	m.setEnabled(false);
+	m.setDisabledIcon(WhiteIcon);
+	m.setIcon(WhiteIcon);
         m.setColor(1);
         flip(m);
-	    this.isBlackTurn = true;
-	}
+	this.isBlackTurn = true;
+	isVictory();
+    }
     }
     
     
