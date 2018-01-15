@@ -167,7 +167,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y][x + 1].getColor() == 1){
-            for (int newCol = x + 2; newCol < 8; newCol ++){
+            for (int newCol = x + 2; newCol <= 7; newCol ++){
                 if (Locations[y][newCol].getColor() == 2){
                     return false;
                 }
@@ -177,7 +177,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y][x + 1].getColor() == 0){
-            for (int newCol = x + 2; newCol < 8; newCol ++){
+            for (int newCol = x + 2; newCol < 7; newCol ++){
                 if (Locations[y][newCol].getColor() == 2){
                     return false;
                 }
@@ -193,7 +193,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y][x - 1].getColor() == 1){
-            for (int newCol = x - 2; newCol > 0; newCol --){
+            for (int newCol = x - 2; newCol >= 0; newCol --){
                 if (Locations[y][newCol].getColor() == 2){
                     return false;
                 }
@@ -203,7 +203,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y][x - 1].getColor() == 0){
-            for (int newCol = x - 2; newCol > 0; newCol --){
+            for (int newCol = x - 2; newCol >= 0; newCol --){
                 if (Locations[y][newCol].getColor() == 2){
                     return false;
                 }
@@ -219,7 +219,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y - 1][x].getColor() == 1){
-            for (int newRow = y - 2; newRow > 0; newRow --){
+            for (int newRow = y - 2; newRow >= 0; newRow --){
                 if (Locations[newRow][x].getColor() == 2){
                     return false;
                 }
@@ -229,7 +229,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y - 1][x].getColor() == 0){
-            for (int newRow = y - 2; newRow > 0; newRow --){
+            for (int newRow = y - 2; newRow >= 0; newRow --){
                 if (Locations[newRow][x].getColor() == 2){
                     return false;
                 }
@@ -245,7 +245,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y + 1][x].getColor() == 1){
-            for (int newRow = y + 2; newRow < 8; newRow ++){
+            for (int newRow = y + 2; newRow <= 7; newRow ++){
                 if (Locations[newRow][x].getColor() == 2){
                     return false;
                 }
@@ -255,7 +255,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y + 1][x].getColor() == 0){
-            for (int newRow = y + 2; newRow < 8; newRow ++){
+            for (int newRow = y + 2; newRow <= 7; newRow ++){
                 if (Locations[newRow][x].getColor() == 2){
                     return false;
                 }
@@ -271,7 +271,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y - 1][x + 1].getColor() == 1){
-            for (int newRow = y - 2, newCol = x + 2 ; newRow > 0 && newCol < 8; newRow --, newCol++){
+            for (int newRow = y - 2, newCol = x + 2 ; newRow >= 0 && newCol <= 7; newRow --, newCol++){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -281,7 +281,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y - 1][x + 1].getColor() == 0){
-            for (int newRow = y - 2, newCol = x + 2 ; newRow > 0 && newCol < 8; newRow --, newCol++){
+            for (int newRow = y - 2, newCol = x + 2 ; newRow >= 0 && newCol <= 7; newRow --, newCol++){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -297,7 +297,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y - 1][x - 1].getColor() == 1){
-            for (int newRow = y - 2, newCol = x - 2 ; newRow > 0 && newCol > 0; newRow --, newCol--){
+            for (int newRow = y - 2, newCol = x - 2 ; newRow >= 0 && newCol >= 0; newRow --, newCol--){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -307,7 +307,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y - 1][x - 1].getColor() == 0){
-            for (int newRow = y - 2, newCol = x - 2 ; newRow > 0 && newCol > 0; newRow --, newCol--){
+            for (int newRow = y - 2, newCol = x - 2 ; newRow >= 0 && newCol >= 0; newRow --, newCol--){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -323,7 +323,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y + 1][x + 1].getColor() == 1){
-            for (int newRow = y + 2, newCol = x + 2 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
+            for (int newRow = y + 2, newCol = x + 2 ; newRow <= 7 && newCol <= 7; newRow ++, newCol++){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -333,7 +333,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y + 1][x + 1].getColor() == 0){
-            for (int newRow = y + 2, newCol = x + 2 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
+            for (int newRow = y + 2, newCol = x + 2 ; newRow <= 7 && newCol <= 7; newRow ++, newCol++){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -349,7 +349,7 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn && Locations[y + 1][x - 1].getColor() == 1){
-            for (int newRow = y + 2, newCol = x - 2 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
+            for (int newRow = y + 2, newCol = x - 2 ; newRow <= 7 && newCol >= 0; newRow ++, newCol--){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -359,7 +359,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y + 1][x - 1].getColor() == 0){
-            for (int newRow = y + 2, newCol = x - 2 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
+            for (int newRow = y + 2, newCol = x - 2 ; newRow <= 7 && newCol >= 0; newRow ++, newCol--){
                 if (Locations[newRow][newCol].getColor() == 2){
                     return false;
                 }
@@ -382,13 +382,13 @@ public class Board extends JFrame implements MouseListener{
         if (x == 0 && (y >= 1 && y <= 6)){
             return 0;
         }
-        else if (y == 0 && (x >= 1 && x <= 1)){
+        else if (y == 0 && (x >= 1 && x <= 6)){
             return 1;
         }
         else if (x == 7 && (y >= 1 && y <= 6)){
             return 2;
         }
-        else if (y == 7 && (x >= 1 && x <= 1)){
+        else if (y == 7 && (x >= 1 && x <= 6)){
             return 3;
         }
         return -1;
@@ -452,8 +452,9 @@ public class Board extends JFrame implements MouseListener{
         int x = p.getCol();
         int y = p.getRow();
         if (isBlackTurn){
-            if (East(p)){
-                for (int newCol = x + 1; newCol < 8; newCol ++){
+            if (BorderPieces(p) != 2 && CornerPieces(p) != 1 && CornerPieces(p) != 3){
+                if (East(p)){
+                for (int newCol = x + 1; newCol <= 8; newCol ++){
                     if (Locations[y][newCol].getColor() == 1){
                         Locations[y][newCol].setColor(0);
                         Locations[y][newCol].setDisabledIcon(BlackIcon);
@@ -464,8 +465,11 @@ public class Board extends JFrame implements MouseListener{
                     }
                 }
             }
-            if (West(p)){
-                for (int newCol = x - 1; newCol > 0; newCol --){
+            }
+            
+            if (BorderPieces(p) != 0 && CornerPieces(p) != 2 & CornerPieces(p) != 0){
+                if (West(p)){
+                for (int newCol = x - 1; newCol >= 0; newCol --){
                 if (Locations[y][newCol].getColor() == 1){
                     Locations[y][newCol].setColor(0);
                     Locations[y][newCol].setDisabledIcon(BlackIcon);
@@ -476,9 +480,11 @@ public class Board extends JFrame implements MouseListener{
                 }
                 }
             }
+            }
             
-            if (North(p)){
-                for (int newRow = y - 1; newRow > 0; newRow --){
+            if (BorderPieces(p) != 1 && CornerPieces(p) != 1 & CornerPieces(p) != 0){
+                if (North(p)){
+                for (int newRow = y - 1; newRow >= 0; newRow --){
                 if (Locations[newRow][x].getColor() == 1){
                     Locations[newRow][x].setColor(0);
                     Locations[newRow][x].setDisabledIcon(BlackIcon);
@@ -489,9 +495,11 @@ public class Board extends JFrame implements MouseListener{
                     }
             }
             }
+            }
             
-            if (South(p)){
-                for (int newRow = y + 1; newRow < 8; newRow ++){
+            if (BorderPieces(p) != 3 && CornerPieces(p) != 2 & CornerPieces(p) != 3){
+                if (South(p)){
+                for (int newRow = y + 1; newRow <= 8; newRow ++){
                 if (Locations[newRow][x].getColor() == 1){
                     Locations[newRow][x].setColor(0);
                     Locations[newRow][x].setDisabledIcon(BlackIcon);
@@ -502,9 +510,10 @@ public class Board extends JFrame implements MouseListener{
                     }
             }
             }
-            
+            }
+            if (BorderPieces(p) != 1 && CornerPieces(p) != 1 & CornerPieces(p) != 0 && BorderPieces(p) != 2 && CornerPieces(p) != 3){
             if (NorthEast(p)){
-                for (int newRow = y - 1, newCol = x + 1 ; newRow > 0 && newCol < 8; newRow --, newCol++){
+                for (int newRow = y - 1, newCol = x + 1 ; newRow >= 0 && newCol <= 8; newRow --, newCol++){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
                     Locations[newRow][newCol].setDisabledIcon(BlackIcon);
@@ -515,9 +524,10 @@ public class Board extends JFrame implements MouseListener{
                     }
                 }
             }
-            
+            }
+            if (BorderPieces(p) != 1 && CornerPieces(p) != 1 & CornerPieces(p) != 0 && BorderPieces(p) != 0 && CornerPieces(p) != 2){
             if (NorthWest(p)){
-                for (int newRow = y - 1, newCol = x - 1 ; newRow > 0 && newCol > 0; newRow --, newCol--){
+                for (int newRow = y - 1, newCol = x - 1 ; newRow >= 0 && newCol >= 0; newRow --, newCol--){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
                     Locations[newRow][newCol].setDisabledIcon(BlackIcon);
@@ -528,9 +538,10 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             }
-            
+        }
+            if (BorderPieces(p) != 3 && CornerPieces(p) != 2 && CornerPieces(p) != 3 && BorderPieces(p) != 2 && CornerPieces(p) != 1){
             if (SouthEast(p)){
-                for (int newRow = y + 1, newCol = x + 1 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
+                for (int newRow = y + 1, newCol = x + 1 ; newRow <= 8 && newCol <= 8; newRow ++, newCol++){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
                     Locations[newRow][newCol].setDisabledIcon(BlackIcon);
@@ -541,9 +552,10 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             }
-            
+            }
+            if (BorderPieces(p) != 3 && CornerPieces(p) != 2 & CornerPieces(p) != 3 && BorderPieces(p) != 0 && CornerPieces(p) != 0){
             if (SouthWest(p)){
-                for (int newRow = y + 1, newCol = x - 1 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
+                for (int newRow = y + 1, newCol = x - 1 ; newRow <= 8 && newCol >= 0; newRow ++, newCol--){
                 if (Locations[newRow][newCol].getColor() == 1){
                     Locations[newRow][newCol].setColor(0);
                     Locations[newRow][newCol].setDisabledIcon(BlackIcon);
@@ -555,9 +567,11 @@ public class Board extends JFrame implements MouseListener{
             }
             }
             }
+        }
         if (isBlackTurn == false){
+            if (BorderPieces(p) != 2 && CornerPieces(p) != 1 && CornerPieces(p) != 3){
             if (East(p)){
-                for (int newCol = x + 1; newCol < 8; newCol ++){
+                for (int newCol = x + 1; newCol <= 8; newCol ++){
                     if (Locations[y][newCol].getColor() == 0){
                         Locations[y][newCol].setColor(1);
                         Locations[y][newCol].setDisabledIcon(WhiteIcon);
@@ -568,8 +582,10 @@ public class Board extends JFrame implements MouseListener{
                     }
                 }
             }
+            }
+            if (BorderPieces(p) != 0 && CornerPieces(p) != 2 & CornerPieces(p) != 0){
             if (West(p)){
-                for (int newCol = x - 1; newCol > 0; newCol --){
+                for (int newCol = x - 1; newCol >= 0; newCol --){
                 if (Locations[y][newCol].getColor() == 0){
                     Locations[y][newCol].setColor(1);
                     Locations[y][newCol].setDisabledIcon(WhiteIcon);
@@ -580,9 +596,10 @@ public class Board extends JFrame implements MouseListener{
                 }
                 }
             }
-            
+            }
+            if (BorderPieces(p) != 1 && CornerPieces(p) != 1 & CornerPieces(p) != 0){
             if (North(p)){
-                for (int newRow = y - 1; newRow > 0; newRow --){
+                for (int newRow = y - 1; newRow >= 0; newRow --){
                 if (Locations[newRow][x].getColor() == 0){
                     Locations[newRow][x].setColor(1);
                     Locations[newRow][x].setDisabledIcon(WhiteIcon);
@@ -593,9 +610,10 @@ public class Board extends JFrame implements MouseListener{
                     }
             }
             }
-            
+            }
+            if (BorderPieces(p) != 3 && CornerPieces(p) != 2 & CornerPieces(p) != 3){
             if (South(p)){
-                for (int newRow = y + 1; newRow < 8; newRow ++){
+                for (int newRow = y + 1; newRow <= 8; newRow ++){
                 if (Locations[newRow][x].getColor() == 0){
                     Locations[newRow][x].setColor(1);
                     Locations[newRow][x].setDisabledIcon(WhiteIcon);
@@ -606,9 +624,10 @@ public class Board extends JFrame implements MouseListener{
                     }
             }
             }
-            
+            }
+            if (BorderPieces(p) != 1 && CornerPieces(p) != 1 & CornerPieces(p) != 0 && BorderPieces(p) != 2 && CornerPieces(p) != 3){
             if (NorthEast(p)){
-                for (int newRow = y - 1, newCol = x + 1 ; newRow > 0 && newCol < 8; newRow --, newCol++){
+                for (int newRow = y - 1, newCol = x + 1 ; newRow >= 0 && newCol <= 8; newRow --, newCol++){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
                     Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
@@ -619,9 +638,10 @@ public class Board extends JFrame implements MouseListener{
                     }
                 }
             }
-            
+            }
+            if (BorderPieces(p) != 1 && CornerPieces(p) != 1 & CornerPieces(p) != 0 && BorderPieces(p) != 0 && CornerPieces(p) != 2){
              if (NorthWest(p)){
-                for (int newRow = y - 1, newCol = x - 1 ; newRow > 0 && newCol > 0; newRow --, newCol--){
+                for (int newRow = y - 1, newCol = x - 1 ; newRow >= 0 && newCol >= 0; newRow --, newCol--){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
                     Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
@@ -632,9 +652,10 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             }
-            
+            }
+            if (BorderPieces(p) != 3 && CornerPieces(p) != 2 && CornerPieces(p) != 3 && BorderPieces(p) != 2 && CornerPieces(p) != 1){
             if (SouthEast(p)){
-                for (int newRow = y + 1, newCol = x + 1 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
+                for (int newRow = y + 1, newCol = x + 1 ; newRow <= 8 && newCol <= 8; newRow ++, newCol++){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
                     Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
@@ -645,9 +666,10 @@ public class Board extends JFrame implements MouseListener{
                 }
             }
             }
-            
+            }
+            if (BorderPieces(p) != 3 && CornerPieces(p) != 2 & CornerPieces(p) != 3 && BorderPieces(p) != 0 && CornerPieces(p) != 0){
              if (SouthWest(p)){
-                for (int newRow = y + 1, newCol = x - 1 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
+                for (int newRow = y + 1, newCol = x - 1 ; newRow <= 8 && newCol >= 0; newRow ++, newCol--){
                 if (Locations[newRow][newCol].getColor() == 0){
                     Locations[newRow][newCol].setColor(1);
                     Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
@@ -659,6 +681,7 @@ public class Board extends JFrame implements MouseListener{
             }
             }
         }
+    }
     }
 
     
@@ -748,6 +771,9 @@ public class Board extends JFrame implements MouseListener{
             m.setEnabled(true);
             m.setIcon(whiteRoll);
             m.setFocusPainted(false);
+        }
+        else {
+            
         }
     }
     
