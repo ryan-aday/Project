@@ -10,11 +10,7 @@ public class Victory extends JFrame{
     private Container pane;
 
     private JButton toMain;
-<<<<<<< HEAD
-    private JLabel background;
-=======
->>>>>>> master
-
+    
     private ImageIcon logo;
     private JLabel logoLabel;
     private JLabel l;
@@ -47,20 +43,12 @@ public class Victory extends JFrame{
 
 	String v="";
 	if (Board.checkB()>Board.checkW()){
-<<<<<<< HEAD
-	    v="BLACK";
-	}else v="WHITE";
-=======
 	    v=Board.getP1();
 	}else v=Board.getP2();
->>>>>>> master
-	
-	
+		
 	victor= new JTextField("VICTOR: " +v);
 	pane.add(victor);
 
-
-<<<<<<< HEAD
 	numB= new JTextField("Number of Black Pieces: "+Board.checkB());
 	pane.add(numB);
 
