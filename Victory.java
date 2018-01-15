@@ -10,7 +10,6 @@ public class Victory extends JFrame{
     private Container pane;
 
     private JButton toMain;
-    private JLabel background;
 
     private ImageIcon logo;
     private JLabel logoLabel;
@@ -44,18 +43,18 @@ public class Victory extends JFrame{
 
 	String v="";
 	if (Board.checkB()>Board.checkW()){
-	    v="BLACK";
-	}else v="WHITE";
+	    v=Board.getP1();
+	}else v=Board.getP2();
 	
 	
 	victor= new JTextField("VICTOR: " +v);
 	pane.add(victor);
 
 
-	numB= new JTextField("Number of Black Pieces: "+Board.checkB());
+	numB= new JTextField("Number of "+Board.getP1()+"'s Pieces: "+Board.checkB());
 	pane.add(numB);
 
-	numW= new JTextField("Number of White Pieces: "+Board.checkW());
+	numW= new JTextField("Number of "+Board.getP2()+"'s Pieces: "+Board.checkW());
 	pane.add(numW);
 
 	toMain=new JButton("Back to Main Menu");
