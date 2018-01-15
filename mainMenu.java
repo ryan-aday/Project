@@ -16,6 +16,8 @@ public class mainMenu extends JFrame{
     private JLabel logoLabel;
     private JLabel l;
 
+    private JTextField p1, p2;
+
     public mainMenu(){
         this.setTitle("Othello: The Game");
 	this.setSize(850,300);
@@ -40,16 +42,23 @@ public class mainMenu extends JFrame{
 	catch(IOException ie){
 	    System.out.println("Error reading logo img file");
 	}
+
+	p1= new JTextField("BLACK");
+	p2= new JTextField("WHITE");
 	
 	StartGame=new JButton("Start Game");
 	StartGame.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
+		    Board.p1=p1.getText();
+		    Board.p2=p2.getText();
+		    
 		    CloseFrame();
 		    Board.main(new String[0]);
 		}
 	    });
-	
+	pane.add(p1);
+	pane.add(p2);
 	pane.add(StartGame);
     }
 
