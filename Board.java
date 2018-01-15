@@ -418,6 +418,19 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public boolean isValidMove(Pieces p){
+        if (CornerPieces(p) == 0){
+            return (South(p) || East(p) || SouthEast(p));
+        }
+        else if (CornerPieces(p) == 1){
+            return (West(p) || South(p) || SouthWest(p)); 
+        }
+        else if (CornerPieces(p) == 2){
+            return (North(p) || NorthEast(p) || East(p));
+        }
+        else if (CornerPieces(p) == 3){
+            return (North(p) || NorthWest(p) || West(p));
+        }
+        
         return(East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p));
     }
     
