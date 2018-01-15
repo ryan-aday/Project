@@ -46,6 +46,7 @@ public class mainMenu extends JFrame{
 	StartGame.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
+		    CloseFrame();
 		    Board.main(new String[0]);
 		}
 	    });
@@ -57,20 +58,21 @@ public class mainMenu extends JFrame{
     private void mouseClicked(MouseEvent e){
     }
    
-     private void mouseEntered(MouseEvent e){
-     }
- 
-     private void mousePressed(MouseEvent e){
-     }
- 
-     private void mouseReleased(MouseEvent e){
-     }
- 
-     private void ActionPerformed(ActionEvent ae){
-     }
-
+    private void mouseEntered(MouseEvent e){
+    }
     
+    private void mousePressed(MouseEvent e){
+    }
     
+    private void mouseReleased(MouseEvent e){
+    }
+    
+    private void ActionPerformed(ActionEvent ae){
+    }
+    
+    public void CloseFrame(){
+	super.dispose();
+    }
     
     public static void main(String[] args) {
 	mainMenu g = new mainMenu();
