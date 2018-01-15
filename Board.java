@@ -161,7 +161,7 @@ public class Board extends JFrame implements MouseListener{
         int y = p.getRow();
 	return true;
     }
-
+    
     //Asks if Player  Pieces are in certain locations
     public boolean East(Pieces p){
         int x = p.getCol();
