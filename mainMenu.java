@@ -21,27 +21,26 @@ public class mainMenu extends JFrame{
 	this.setSize(850,300);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
+
+	setContentPane(new JLabel(new ImageIcon("./background2.jpg")));
 	pane=this.getContentPane();
         pane.setLayout(new BoxLayout(pane, BoxLayout.LINE_AXIS));
-	
+
 	try{
 	    BufferedImage img = ImageIO.read(new File("./logo.jpg"));
 	    logo = new ImageIcon(img);
 	    JLabel logoDisp= new JLabel(logo);
 	    JOptionPane.showMessageDialog(null, logoDisp);
 	    pane.add(logoDisp);
+	    
+	    pane.add(Box.createHorizontalGlue());
+	    pane.add(Box.createRigidArea(new Dimension(10, 0)));
 	}
-
+	
 	catch(IOException ie){
 	    System.out.println("Error reading logo img file");
 	}
-
-	pane.add(Box.createHorizontalGlue());
-        pane.add(Box.createRigidArea(new Dimension(10, 0)));
 	
-
-
 	StartGame=new JButton("Start Game");
 	StartGame.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
@@ -50,10 +49,11 @@ public class mainMenu extends JFrame{
 		    Board.main(new String[0]);
 		}
 	    });
-		    	
-        pane.add(StartGame);
-
+	
+	pane.add(StartGame);
     }
+
+
 
     private void mouseClicked(MouseEvent e){
     }
