@@ -6,17 +6,19 @@ import java.awt.event.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-public class mainMenu extends JFrame{
+public class Victory extends JFrame{
     private Container pane;
 
-    private JButton StartGame;
+    private JButton toMain;
     private JLabel background;
 
     private ImageIcon logo;
     private JLabel logoLabel;
     private JLabel l;
 
-    public mainMenu(){
+    private JTextField victor, numB, numW;
+
+    public Victory(){
         this.setTitle("Othello: The Game");
 	this.setSize(850,300);
 	this.setLocation(100,100);
@@ -26,11 +28,11 @@ public class mainMenu extends JFrame{
         pane.setLayout(new BoxLayout(pane, BoxLayout.LINE_AXIS));
 	
 	try{
-	    BufferedImage img = ImageIO.read(new File("./logo.jpg"));
+	    BufferedImage img = ImageIO.read(new File("./victory.jpg"));
 	    logo = new ImageIcon(img);
 	    JLabel logoDisp= new JLabel(logo);
 	    JOptionPane.showMessageDialog(null, logoDisp);
-	    pane.add(logoDisp);
+	    //pane.add(logoDisp);
 	}
 
 	catch(IOException ie){
@@ -39,41 +41,57 @@ public class mainMenu extends JFrame{
 
 	pane.add(Box.createHorizontalGlue());
         pane.add(Box.createRigidArea(new Dimension(10, 0)));
+
+	String v="";
+	if (Board.checkB()>Board.checkW()){
+	    v="BLACK";
+	}else v="WHITE";
 	
+	
+	victor= new JTextField("VICTOR: " +v);
+	pane.add(victor);
 
 
-	StartGame=new JButton("Start Game");
-	StartGame.addActionListener(new ActionListener(){
+	numB= new JTextField("Number of Black Pieces: "+Board.checkB());
+	pane.add(numB);
+
+	numW= new JTextField("Number of White Pieces: "+Board.checkW());
+	pane.add(numW);
+
+	toMain=new JButton("Back to Main Menu");
+	toMain.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
-		    Board.main(new String[0]);
+		    CloseFrame();
+		    mainMenu.main(new String[0]);
 		}
 	    });
 		    	
-        pane.add(StartGame);
+        pane.add(toMain);
 
     }
 
     private void mouseClicked(MouseEvent e){
     }
    
-     private void mouseEntered(MouseEvent e){
-     }
- 
-     private void mousePressed(MouseEvent e){
-     }
- 
-     private void mouseReleased(MouseEvent e){
-     }
- 
-     private void ActionPerformed(ActionEvent ae){
-     }
+    private void mouseEntered(MouseEvent e){
+    }
+    
+    private void mousePressed(MouseEvent e){
+    }
+    
+    private void mouseReleased(MouseEvent e){
+    }
+    
+    private void ActionPerformed(ActionEvent ae){
+    }
 
-    
-    
+    public void CloseFrame(){
+	super.dispose();
+    }
     
     public static void main(String[] args) {
-	mainMenu g = new mainMenu();
+	Victory g = new Victory();
 	g.setVisible(true);
     } 
 }
