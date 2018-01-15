@@ -8,21 +8,21 @@ import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 
 public class Pieces extends JButton{
-    private static int x;
-    private static int y;
-    
-    public static int color;
+    private int x;
+    private int y;
+    private int color;
     
     public Pieces(int x, int y){
         this.x = x;
         this.y = y;
+        this.color = 2;
     }
     
-    public static int getRow(){
+    public int getRow(){
 	return y;
     }
 
-    public static int getCol(){
+    public int getCol(){
 	return x;
     }
 
@@ -31,7 +31,7 @@ public class Pieces extends JButton{
     }
     
     public void setColor(int col){
-	color=col;
+	   color=col;
     }
     
 }
