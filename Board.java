@@ -46,21 +46,14 @@ public class Board extends JFrame implements MouseListener{
             Locations[i][c] = new Pieces(c,i);
             Locations[i][c].addMouseListener(this);
             Locations[i][c].setEnabled(false);
-		if (i == 3 && c == 3){
+		if (i == 4 && c == 3){
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(BlackIcon);
 		    Locations[i][c].setIcon(BlackIcon);
 		    Locations[i][c].setColor(0);
 		}
-		else if (i == 4 && c == 3){
-		    Locations[i][c].setFocusPainted(false);
-		    Locations[i][c].setEnabled(false);
-		    Locations[i][c].setDisabledIcon(WhiteIcon);
-		    Locations[i][c].setIcon(WhiteIcon);
-		    Locations[i][c].setColor(1);
-		}
-		else if (i == 3 && c == 4){
+		else if (i == 3 && c == 3){
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(WhiteIcon);
@@ -68,6 +61,13 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setColor(1);
 		}
 		else if (i == 4 && c == 4){
+		    Locations[i][c].setFocusPainted(false);
+		    Locations[i][c].setEnabled(false);
+		    Locations[i][c].setDisabledIcon(WhiteIcon);
+		    Locations[i][c].setIcon(WhiteIcon);
+		    Locations[i][c].setColor(1);
+		}
+		else if (i == 3 && c == 4){
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(BlackIcon);
