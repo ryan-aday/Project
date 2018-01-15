@@ -81,8 +81,6 @@ public class Board extends JFrame implements MouseListener{
 	}
 
 	//Demo Button to simulate a total Black Win
-
-	JButton demoVictoryB= new JButton("BWin");
 	JButton demoVictoryB= new JButton("BWin");
 	demoVictoryB.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
@@ -117,7 +115,6 @@ public class Board extends JFrame implements MouseListener{
 		}
 	    });
 	pane.add(demoVictoryW);
-	
 
 	if (checkB()==checkW()){
 	    v="DRAW";
@@ -373,7 +370,6 @@ public class Board extends JFrame implements MouseListener{
     public boolean isValidMove(Pieces p){
         return(East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p));
     }
-<<<<<<< HEAD
     
     public void flip(Pieces p){
         int x = p.getCol();
@@ -588,221 +584,6 @@ public class Board extends JFrame implements MouseListener{
         }
     }
     
-    public void flip(Pieces p){
-        int x = p.getCol();
-        int y = p.getRow();
-        if (isBlackTurn){
-            if (East(p)){
-                for (int newCol = x + 1; newCol < 8; newCol ++){
-                    if (Locations[y][newCol].getColor() == 1){
-                        Locations[y][newCol].setColor(0);
-                        Locations[y][newCol].setDisabledIcon(BlackIcon);
-                        Locations[y][newCol].setIcon(BlackIcon);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            if (West(p)){
-                for (int newCol = x - 1; newCol > 0; newCol --){
-                if (Locations[y][newCol].getColor() == 1){
-                    Locations[y][newCol].setColor(0);
-                    Locations[y][newCol].setDisabledIcon(BlackIcon);
-                    Locations[y][newCol].setIcon(BlackIcon);
-                }
-                else {
-                    break;
-                }
-                }
-            }
-            
-            if (North(p)){
-                for (int newRow = y - 1; newRow > 0; newRow --){
-                if (Locations[newRow][x].getColor() == 1){
-                    Locations[newRow][x].setColor(0);
-                    Locations[newRow][x].setDisabledIcon(BlackIcon);
-                    Locations[newRow][x].setIcon(BlackIcon);
-                }
-                    else {
-                        break;
-                    }
-            }
-            }
-            
-            if (South(p)){
-                for (int newRow = y + 1; newRow < 8; newRow ++){
-                if (Locations[newRow][x].getColor() == 1){
-                    Locations[newRow][x].setColor(0);
-                    Locations[newRow][x].setDisabledIcon(BlackIcon);
-                    Locations[newRow][x].setIcon(BlackIcon);
-                }
-                    else {
-                        break;
-                    }
-            }
-            }
-            
-            if (NorthEast(p)){
-                for (int newRow = y - 1, newCol = x + 1 ; newRow > 0 && newCol < 8; newRow --, newCol++){
-                if (Locations[newRow][newCol].getColor() == 1){
-                    Locations[newRow][newCol].setColor(0);
-                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
-                    Locations[newRow][newCol].setIcon(BlackIcon);
-                }
-                    else {
-                        break;
-                    }
-                }
-            }
-            
-            if (NorthWest(p)){
-                for (int newRow = y - 1, newCol = x - 1 ; newRow > 0 && newCol > 0; newRow --, newCol--){
-                if (Locations[newRow][newCol].getColor() == 1){
-                    Locations[newRow][newCol].setColor(0);
-                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
-                    Locations[newRow][newCol].setIcon(BlackIcon);
-                }
-                else {
-                    break;
-                }
-            }
-            }
-            
-            if (SouthEast(p)){
-                for (int newRow = y + 1, newCol = x + 1 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
-                if (Locations[newRow][newCol].getColor() == 1){
-                    Locations[newRow][newCol].setColor(0);
-                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
-                    Locations[newRow][newCol].setIcon(BlackIcon);
-                }
-                else {
-                    break;
-                }
-            }
-            }
-            
-            if (SouthWest(p)){
-                for (int newRow = y + 1, newCol = x - 1 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
-                if (Locations[newRow][newCol].getColor() == 1){
-                    Locations[newRow][newCol].setColor(0);
-                    Locations[newRow][newCol].setDisabledIcon(BlackIcon);
-                    Locations[newRow][newCol].setIcon(BlackIcon);
-                }
-                else {
-                    break;
-                }
-            }
-            }
-            }
-        if (isBlackTurn == false){
-            if (East(p)){
-                for (int newCol = x + 1; newCol < 8; newCol ++){
-                    if (Locations[y][newCol].getColor() == 0){
-                        Locations[y][newCol].setColor(1);
-                        Locations[y][newCol].setDisabledIcon(WhiteIcon);
-                        Locations[y][newCol].setIcon(WhiteIcon);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            if (West(p)){
-                for (int newCol = x - 1; newCol > 0; newCol --){
-                if (Locations[y][newCol].getColor() == 0){
-                    Locations[y][newCol].setColor(1);
-                    Locations[y][newCol].setDisabledIcon(WhiteIcon);
-                    Locations[y][newCol].setIcon(WhiteIcon);
-                }
-                else {
-                    break;
-                }
-                }
-            }
-            
-            if (North(p)){
-                for (int newRow = y - 1; newRow > 0; newRow --){
-                if (Locations[newRow][x].getColor() == 0){
-                    Locations[newRow][x].setColor(1);
-                    Locations[newRow][x].setDisabledIcon(WhiteIcon);
-                    Locations[newRow][x].setIcon(WhiteIcon);
-                }
-                    else {
-                        break;
-                    }
-            }
-            }
-            
-            if (South(p)){
-                for (int newRow = y + 1; newRow < 8; newRow ++){
-                if (Locations[newRow][x].getColor() == 0){
-                    Locations[newRow][x].setColor(1);
-                    Locations[newRow][x].setDisabledIcon(WhiteIcon);
-                    Locations[newRow][x].setIcon(WhiteIcon);
-                }
-                    else {
-                        break;
-                    }
-            }
-            }
-            
-            if (NorthEast(p)){
-                for (int newRow = y - 1, newCol = x + 1 ; newRow > 0 && newCol < 8; newRow --, newCol++){
-                if (Locations[newRow][newCol].getColor() == 0){
-                    Locations[newRow][newCol].setColor(1);
-                    Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
-                    Locations[newRow][newCol].setIcon(WhiteIcon);
-                }
-                    else {
-                        break;
-                    }
-                }
-            }
-            
-             if (NorthWest(p)){
-                for (int newRow = y - 1, newCol = x - 1 ; newRow > 0 && newCol > 0; newRow --, newCol--){
-                if (Locations[newRow][newCol].getColor() == 0){
-                    Locations[newRow][newCol].setColor(1);
-                    Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
-                    Locations[newRow][newCol].setIcon(WhiteIcon);
-                }
-                else {
-                    break;
-                }
-            }
-            }
-            
-            if (SouthEast(p)){
-                for (int newRow = y + 1, newCol = x + 1 ; newRow < 8 && newCol < 8; newRow ++, newCol++){
-                if (Locations[newRow][newCol].getColor() == 0){
-                    Locations[newRow][newCol].setColor(1);
-                    Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
-                    Locations[newRow][newCol].setIcon(WhiteIcon);
-                }
-                else {
-                    break;
-                }
-            }
-            }
-            
-             if (SouthWest(p)){
-                for (int newRow = y + 1, newCol = x - 1 ; newRow < 8 && newCol > 0; newRow ++, newCol--){
-                if (Locations[newRow][newCol].getColor() == 0){
-                    Locations[newRow][newCol].setColor(1);
-                    Locations[newRow][newCol].setDisabledIcon(WhiteIcon);
-                    Locations[newRow][newCol].setIcon(WhiteIcon);
-                }
-                else {
-                    break;
-                }
-            }
-            }
-        }
-    }
-
-    
->>>>>>> master
     //Victory Conditions
     public void isVictory(){
 	int count=0;

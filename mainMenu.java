@@ -49,12 +49,8 @@ public class mainMenu extends JFrame{
 	StartGame.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
-<<<<<<< HEAD
-=======
 		    Board.p1=p1.getText();
 		    Board.p2=p2.getText();
-		    
->>>>>>> master
 		    CloseFrame();
 		    Board.main(new String[0]);
 		}
@@ -81,18 +77,6 @@ public class mainMenu extends JFrame{
    
     private void mouseEntered(MouseEvent e){
     }
-<<<<<<< HEAD
-    
-    private void mousePressed(MouseEvent e){
-    }
-    
-    private void mouseReleased(MouseEvent e){
-    }
-    
-    private void ActionPerformed(ActionEvent ae){
-    }
-    
-=======
     
     private void mousePressed(MouseEvent e){
     }
@@ -104,7 +88,6 @@ public class mainMenu extends JFrame{
     }
 
     //Used to close current window
->>>>>>> master
     public void CloseFrame(){
 	super.dispose();
     }

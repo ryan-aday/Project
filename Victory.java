@@ -10,10 +10,6 @@ public class Victory extends JFrame{
     private Container pane;
 
     private JButton toMain;
-<<<<<<< HEAD
-    private JLabel background;
-=======
->>>>>>> master
 
     private ImageIcon logo;
     private JLabel logoLabel;
@@ -47,30 +43,16 @@ public class Victory extends JFrame{
 
 	String v="";
 	if (Board.checkB()>Board.checkW()){
-<<<<<<< HEAD
-	    v="BLACK";
-	}else v="WHITE";
-=======
 	    v=Board.getP1();
 	}else v=Board.getP2();
->>>>>>> master
-	
 	
 	victor= new JTextField("VICTOR: " +v);
 	pane.add(victor);
 
-
-<<<<<<< HEAD
-	numB= new JTextField("Number of Black Pieces: "+Board.checkB());
-	pane.add(numB);
-
-	numW= new JTextField("Number of White Pieces: "+Board.checkW());
-=======
 	numB= new JTextField("Number of "+Board.getP1()+"'s Pieces: "+Board.checkB());
 	pane.add(numB);
 
 	numW= new JTextField("Number of "+Board.getP2()+"'s Pieces: "+Board.checkW());
->>>>>>> master
 	pane.add(numW);
 
 	toMain=new JButton("Back to Main Menu");
@@ -85,12 +67,8 @@ public class Victory extends JFrame{
         pane.add(toMain);
 
     }
-<<<<<<< HEAD
-
-=======
     
-    //USeless for now, might use for future fanciness
->>>>>>> master
+    //Useless for now, might use for future fanciness
     private void mouseClicked(MouseEvent e){
     }
    
@@ -105,11 +83,8 @@ public class Victory extends JFrame{
     
     private void ActionPerformed(ActionEvent ae){
     }
-
-<<<<<<< HEAD
-=======
     //Used to close Window
->>>>>>> master
+
     public void CloseFrame(){
 	super.dispose();
     }
