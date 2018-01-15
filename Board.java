@@ -394,6 +394,29 @@ public class Board extends JFrame implements MouseListener{
         return -1;
     }
     
+    //returns which corner the piece is on 
+    public int CornerPieces(Pieces p){
+        //0 for top left corner;
+        //1 for top right corner;
+        //2 for bottom left corner;
+        //3 for bottom right corner;
+        int x = p.getCol();
+        int y = p.getRow();
+        if (x == 0 && y == 0){
+            return 0;
+        }
+        else if (x == 7 && y == 0){
+            return 1;
+        }
+        else if (x == 0 && y == 7){
+            return 2;
+        }
+        else if (x == 7 && y == 7){
+            return 3;
+        }
+        return -1;
+    }
+    
     public boolean isValidMove(Pieces p){
         return(East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p));
     }
