@@ -81,6 +81,7 @@ public class Board extends JFrame implements MouseListener{
 	}
 
 	//Demo Button to simulate a total Black Win
+	/*
 	JButton demoVictoryB= new JButton("BWin");
 	demoVictoryB.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
@@ -115,7 +116,8 @@ public class Board extends JFrame implements MouseListener{
 		}
 	    });
 	pane.add(demoVictoryW);
-	
+	*/	
+
 	if (checkB()==checkW()){
 	    v="DRAW";
 	} else if (checkB()>checkW()){
