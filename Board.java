@@ -12,12 +12,13 @@ import java.io.*;
 
 public class Board extends JFrame implements MouseListener{
     public Container pane;
-    private Pieces[][] Locations;
-    private JButton endTurn;
+    private static Pieces[][] Locations;
+    private JButton demoVictoryB, demoVictoryW;
     private int blackNum;
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn;
+
 
 
     //Board Setup
@@ -50,36 +51,71 @@ public class Board extends JFrame implements MouseListener{
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(BlackIcon);
 		    Locations[i][c].setIcon(BlackIcon);
-            Locations[i][c].setColor(0);
+		    Locations[i][c].setColor(0);
 		}
 		else if (i == 4 && c == 3){
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(WhiteIcon);
 		    Locations[i][c].setIcon(WhiteIcon);
-            Locations[i][c].setColor(1);
+		    Locations[i][c].setColor(1);
 		}
 		else if (i == 3 && c == 4){
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(WhiteIcon);
 		    Locations[i][c].setIcon(WhiteIcon);
-            Locations[i][c].setColor(1);
+		    Locations[i][c].setColor(1);
 		}
 		else if (i == 4 && c == 4){
 		    Locations[i][c].setFocusPainted(false);
 		    Locations[i][c].setEnabled(false);
 		    Locations[i][c].setDisabledIcon(BlackIcon);
 		    Locations[i][c].setIcon(BlackIcon);
-            Locations[i][c].setColor(0);
+		    Locations[i][c].setColor(0);
 		}
 		Locations[i][c].setBackground(new Color(0,153,76));
 		Locations[i][c].setBorder(new LineBorder(Color.BLACK));
 		pane.add(Locations[i][c]);
 	    }
 	}
-	endTurn = new JButton("End Turn");
-	pane.add(endTurn);
+
+	//Demo Button to simulate a total Black Win
+	/*JButton demoVictoryB= new JButton("BWin");
+	demoVictoryB.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e)
+		{
+		    for (int r=0; r<8; r++){
+			for (int c=0; c<8; c++){
+			    Locations[r][c].setFocusPainted(false);
+			    Locations[r][c].setEnabled(false);
+			    Locations[r][c].setDisabledIcon(BlackIcon);
+			    Locations[r][c].setIcon(BlackIcon);
+			    Locations[r][c].setColor(0);
+			}
+		    }isVictory();
+		}
+	    });
+	pane.add(demoVictoryB);
+	
+	//Demo Button to simulate a total White Win
+	JButton demoVictoryW= new JButton("WWin");
+	demoVictoryW.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e)
+		{
+		    for (int r=0; r<8; r++){
+			for (int c=0; c<8; c++){
+			    Locations[r][c].setFocusPainted(false);
+			    Locations[r][c].setEnabled(false);
+			    Locations[r][c].setDisabledIcon(WhiteIcon);
+			    Locations[r][c].setIcon(WhiteIcon);
+			    Locations[r][c].setColor(1);
+			}
+		    }isVictory();
+		}
+	    });
+	pane.add(demoVictoryW);
+	*/
     }
 
 
@@ -95,11 +131,13 @@ public class Board extends JFrame implements MouseListener{
     public boolean isBorderPiece(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
+	return true;
     }
     
     public boolean isCornerPiece(Pieces p){
         int x = p.getCol();
         int y = p.getRow();
+	return true;
     }
 
     //Asks if Player  Pieces are in certain locations
@@ -526,17 +564,51 @@ public class Board extends JFrame implements MouseListener{
             }
             }
         }
-        }
+    }
 
     
     //Victory Conditions
     public void isVictory(){
+	int count=0;
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
-		if (Locations[rcount][ccount]==null){
-		}else Victory.main(new String[0]);
+		if (Locations[rcount][ccount].getColor()==2){
+		    count++;
+		}
 	    }
 	}
+	if (count==0){
+	    CloseFrame();
+	    Victory.main(new String[0]);
+	}
+    }
+
+    //For closing Frame once victory conditions met
+    public void CloseFrame(){
+	super.dispose();
+    }
+
+    //Reports how many Black and White Pieces
+    public static int checkB(){
+	int B=0;
+	for (int r=0; r<8; r++){
+	    for (int c=0; c<8; c++){
+		if (Locations[r][c].getColor()==0){
+		    B++;
+		}
+	    }
+	}return B;
+    }
+
+    public static int checkW(){
+	int W=0;
+	for (int r=0; r<8; r++){
+	    for (int c=0; c<8; c++){
+		if (Locations[r][c].getColor()==1){
+		    W++;
+		}
+	    }
+	}return W;
     }
 
     //Empty Methods due to abstract class, for extra features if we have time
@@ -568,37 +640,39 @@ public class Board extends JFrame implements MouseListener{
     }
     
     public void mouseExited(MouseEvent e){
-	   Pieces m = (Pieces) e.getSource();
-	   if (m.getIcon() == blackRoll || m.getIcon() == whiteRoll){
-           m.setEnabled(false);
-	       m.setIcon(null);
-           m.setColor(2);
-	   }
+	Pieces m = (Pieces) e.getSource();
+	if (m.getIcon() == blackRoll || m.getIcon() == whiteRoll){
+	    m.setEnabled(false);
+	    m.setIcon(null);
+	    m.setColor(2);
+	}
     }
-    
+	    
     public void mouseClicked(MouseEvent e){
     Pieces m = (Pieces) e.getSource();
     System.out.println(m.getColor());
         
-	if (isBlackTurn && m.isEnabled()){
-    m.setColor(0);
-    m.setFocusPainted(false);
-    m.setEnabled(false);
+    if (isBlackTurn && m.isEnabled()){
+	m.setColor(0);
+	m.setFocusPainted(false);
+	m.setEnabled(false);
 	m.setDisabledIcon(BlackIcon);
 	m.setIcon(BlackIcon);
-    flip(m);
+	flip(m);
 	this.isBlackTurn = false;
-	}
-	
-	else if (isBlackTurn == false && m.isEnabled()){
-	    m.setFocusPainted(false);
-	    m.setEnabled(false);
-	    m.setDisabledIcon(WhiteIcon);
-	    m.setIcon(WhiteIcon);
+	isVictory();
+    }
+    
+    else if (isBlackTurn == false && m.isEnabled()){
+	m.setFocusPainted(false);
+	m.setEnabled(false);
+	m.setDisabledIcon(WhiteIcon);
+	m.setIcon(WhiteIcon);
         m.setColor(1);
         flip(m);
-	    this.isBlackTurn = true;
-	}
+	this.isBlackTurn = true;
+	isVictory();
+    }
     }
     
     
