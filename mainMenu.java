@@ -72,7 +72,7 @@ public class mainMenu extends JFrame{
     }
 
 
-
+    //Useless for now, perhaps used for future fanciness
     private void mouseClicked(MouseEvent e){
     }
    
@@ -87,7 +87,8 @@ public class mainMenu extends JFrame{
     
     private void ActionPerformed(ActionEvent ae){
     }
-    
+
+    //Used to close current window
     public void CloseFrame(){
 	super.dispose();
     }
