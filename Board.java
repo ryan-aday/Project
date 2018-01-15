@@ -17,9 +17,10 @@ public class Board extends JFrame implements MouseListener{
     private int blackNum;
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
-    private boolean isBlackTurn;
+    private boolean isBlackTurn=true;
 
-
+    private JTextField victor, numB, numW, turn;
+    private String v="";
 
     //Board Setup
     public Board(){
@@ -116,6 +117,26 @@ public class Board extends JFrame implements MouseListener{
 	    });
 	pane.add(demoVictoryW);
 	*/
+	if (checkB()==checkW()){
+	    v="DRAW";
+	} else if (checkB()>checkW()){
+	    v="BLACK";
+	}else v="WHITE";
+	
+	
+	victor= new JTextField("WINNING: " +v);
+	pane.add(victor);
+
+
+	numB= new JTextField("Black; "+checkB());
+	pane.add(numB);
+
+	numW= new JTextField("White: "+checkW());
+	pane.add(numW);
+
+	turn= new JTextField("Turn: "+checkTurn());
+	pane.add(turn);
+	
     }
 
 
@@ -611,6 +632,15 @@ public class Board extends JFrame implements MouseListener{
 	}return W;
     }
 
+    public String checkTurn(){
+	String t="";
+	if (isBlackTurn){
+	    t="BLACK";
+	}else{
+	    t="WHITE";
+	}return t;
+    }
+
     //Empty Methods due to abstract class, for extra features if we have time
     public void actionPerformed(ActionEvent e){
 	
@@ -673,6 +703,28 @@ public class Board extends JFrame implements MouseListener{
 	this.isBlackTurn = true;
 	isVictory();
     }
+
+    	if (checkB()==checkW()){
+	    v="DRAW";
+	} else if (checkB()>checkW()){
+	    v="BLACK";
+	}else v="WHITE";
+	
+	this.remove(victor);	
+	victor= new JTextField("WINNING: " +v);
+	this.add(victor);
+
+	this.remove(numB);
+	numB= new JTextField("Black; "+checkB());
+	this.add(numB);
+	
+	this.remove(numW);
+	numW= new JTextField("White: "+checkW());
+	this.add(numW);
+
+	this.remove(turn);
+	turn= new JTextField("Turn: "+checkTurn());
+	this.add(turn);
     }
     
     
