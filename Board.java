@@ -126,16 +126,20 @@ public class Board extends JFrame implements MouseListener{
 	
 	
 	victor= new JTextField("WINNING: " +v);
+	victor.setEditable(false);
 	pane.add(victor);
 
 
 	numB= new JTextField(p1+": "+checkB());
+	numB.setEditable(false);
 	pane.add(numB);
 
 	numW= new JTextField(p2+": "+checkW());
+	numW.setEditable(false);
 	pane.add(numW);
 
 	turn= new JTextField("Turn: "+checkTurn());
+	turn.setEditable(false);
 	pane.add(turn);
 	
     }
@@ -771,9 +775,9 @@ public class Board extends JFrame implements MouseListener{
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
 	   if (m.getColor() == 2 && isValidMove(m) && isBlackTurn){
-        m.setEnabled(true);
-        m.setIcon(blackRoll);
-        m.setFocusPainted(false);
+	       m.setEnabled(true);
+	       m.setIcon(blackRoll);
+	       m.setFocusPainted(false);
 	   }
         else if (m.getColor() == 2 && isValidMove(m) && isBlackTurn == false){
             m.setEnabled(true);
@@ -795,8 +799,7 @@ public class Board extends JFrame implements MouseListener{
     }
 	    
     public void mouseClicked(MouseEvent e){
-    Pieces m = (Pieces) e.getSource();
-    System.out.println(m.getColor());
+    Pieces m = (Pieces) e.getSource();;
         
     if (isBlackTurn && m.isEnabled()){
 	m.setColor(0);
@@ -819,28 +822,32 @@ public class Board extends JFrame implements MouseListener{
 	this.isBlackTurn = true;
 	isVictory();
     }
-
-    	if (checkB()==checkW()){
-	    v="DRAW";
+    
+    if (checkB()==checkW()){
+	v="DRAW";
 	} else if (checkB()>checkW()){
-	    v=p1;
-	}else v=p2;
-	
-	this.remove(victor);	
-	victor= new JTextField("WINNING: " +v);
-	this.add(victor);
-
-	this.remove(numB);
-	numB= new JTextField(p1+": "+checkB());
-	this.add(numB);
-	
-	this.remove(numW);
-	numW= new JTextField(p2+": "+checkW());
-	this.add(numW);
-
-	this.remove(turn);
-	turn= new JTextField("Turn: "+checkTurn());
-	this.add(turn);
+	v=p1;
+    }else v=p2;
+    
+    this.remove(victor);	
+    victor= new JTextField("WINNING: " +v);
+    victor.setEditable(false);
+    this.add(victor);
+    
+    this.remove(numB);
+    numB= new JTextField(p1+": "+checkB());
+    numB.setEditable(false);
+    this.add(numB);
+    
+    this.remove(numW);
+    numW= new JTextField(p2+": "+checkW());
+    numW.setEditable(false);
+    this.add(numW);
+    
+    this.remove(turn);
+    turn= new JTextField("Turn: "+checkTurn());
+    turn.setEditable(false);
+    this.add(turn);
     }
     
     
