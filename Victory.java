@@ -46,13 +46,18 @@ public class Victory extends JFrame{
 	    v=Board.getP1();
 	}else v=Board.getP2();
 	
+	
 	victor= new JTextField("VICTOR: " +v);
+	victor.setEditable(false);
 	pane.add(victor);
 
+
 	numB= new JTextField("Number of "+Board.getP1()+"'s Pieces: "+Board.checkB());
+	numB.setEditable(false);
 	pane.add(numB);
 
 	numW= new JTextField("Number of "+Board.getP2()+"'s Pieces: "+Board.checkW());
+	numW.setEditable(false);
 	pane.add(numW);
 
 	toMain=new JButton("Back to Main Menu");
@@ -68,7 +73,7 @@ public class Victory extends JFrame{
 
     }
     
-    //Useless for now, might use for future fanciness
+    //USeless for now, might use for future fanciness
     private void mouseClicked(MouseEvent e){
     }
    
@@ -83,8 +88,8 @@ public class Victory extends JFrame{
     
     private void ActionPerformed(ActionEvent ae){
     }
-    //Used to close Window
 
+    //Used to close Window
     public void CloseFrame(){
 	super.dispose();
     }
