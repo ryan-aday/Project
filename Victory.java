@@ -48,13 +48,16 @@ public class Victory extends JFrame{
 	
 	
 	victor= new JTextField("VICTOR: " +v);
+	victor.setEditable(false);
 	pane.add(victor);
 
 
 	numB= new JTextField("Number of "+Board.getP1()+"'s Pieces: "+Board.checkB());
+	numB.setEditable(false);
 	pane.add(numB);
 
 	numW= new JTextField("Number of "+Board.getP2()+"'s Pieces: "+Board.checkW());
+	numW.setEditable(false);
 	pane.add(numW);
 
 	toMain=new JButton("Back to Main Menu");
