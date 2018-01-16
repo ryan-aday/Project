@@ -387,16 +387,16 @@ public class Board extends JFrame implements MouseListener{
         //3 for bottom side
         int x = p.getCol();
         int y = p.getRow();
-        if (x == 0 && (y >= 1 && y <= 6)){
+        if (x == 0 && (y >= 0 && y <= 6)){
             return 0;
         }
-        else if (y == 0 && (x >= 1 && x <= 6)){
+        else if (y == 0 && (x >= 0 && x <= 6)){
             return 1;
         }
-        else if (x == 7 && (y >= 1 && y <= 6)){
+        else if (x == 7 && (y >= 0 && y <= 6)){
             return 2;
         }
-        else if (y == 7 && (x >= 1 && x <= 6)){
+        else if (y == 7 && (x >= 0 && x <= 6)){
             return 3;
         }
         return -1;
