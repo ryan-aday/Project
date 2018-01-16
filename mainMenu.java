@@ -51,6 +51,7 @@ public class mainMenu extends JFrame{
 		{
 		    Board.p1=p1.getText();
 		    Board.p2=p2.getText();
+		    
 		    CloseFrame();
 		    Board.main(new String[0]);
 		}
