@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -273,7 +274,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         return false;
-    }
+     }
     
     //checks the top-right side of the piece
     public boolean NorthEast(Pieces p){
@@ -698,7 +699,11 @@ public class Board extends JFrame implements MouseListener{
 
     
     //Victory Conditions
+    //East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p)
     public void isVictory(){
+	int bcount=0;
+	int wcount=0;
+
 	int count=0;
 	for (int rcount=0; rcount<8; rcount++){
 	    for (int ccount=0; ccount<8; ccount++){
@@ -707,11 +712,61 @@ public class Board extends JFrame implements MouseListener{
 		}
 	    }
 	}
+	//System.out.println(count);
+	
+	if (isBlackTurn){
+	    bcount=0;
+	    wcount=0;
+	    for (int xrcount=0; xrcount<8; xrcount++){
+		for (int xccount=0; xccount<8; xccount++){
+		    Pieces p= Locations[xrcount][xccount];
+		    if (isBlackTurn && p.getColor()==2 && isValidMove(p)){
+			bcount++;
+		    }
+		}
+	    }isBlackTurn=false;
+	    for (int wrcount=0; wrcount<8; wrcount++){
+		for (int wccount=0; wccount<8; wccount++){
+		    Pieces w= Locations[wrcount][wccount];
+		    if (isBlackTurn==false && w.getColor()==2 && isValidMove(w)){
+			wcount++;
+		    }
+		}
+	    }isBlackTurn=true;
+	}else{
+	    bcount=0;
+	    wcount=0;
+	    for (int yrcount=0; yrcount<8; yrcount++){
+		for (int yccount=0; yccount<8; yccount++){
+		    Pieces m= Locations[yrcount][yccount];	
+		    if (isBlackTurn==false && m.getColor()==2 && isValidMove(m)){
+			wcount++;
+		    }
+		    }
+	    }
+	    isBlackTurn=true;
+	    for (int brcount=0; brcount<8; brcount++){
+		for (int bccount=0; bccount<8; bccount++){
+			Pieces b= Locations[brcount][bccount];
+			if (isBlackTurn && b.getColor()==2 && isValidMove(b)){
+			    bcount++;
+			}
+		}
+		}isBlackTurn=false;
+	}
+	
+	//System.out.println(bcount+" "+wcount);
+	
 	if (count==0){
 	    CloseFrame();
 	    Victory.main(new String[0]);
-	}
+	}else if (wcount==0){
+	    isBlackTurn=true;
+	}else if (bcount==0){
+	    isBlackTurn=false;
+	}else{}
     }
+
 
     //For closing Frame once victory conditions met
     public void CloseFrame(){
@@ -808,8 +863,8 @@ public class Board extends JFrame implements MouseListener{
 	m.setDisabledIcon(BlackIcon);
 	m.setIcon(BlackIcon);
 	flip(m);
-	this.isBlackTurn = false;
 	isVictory();
+	this.isBlackTurn = false;
     }
     
     else if (isBlackTurn == false && m.isEnabled()){
@@ -819,8 +874,8 @@ public class Board extends JFrame implements MouseListener{
 	m.setIcon(WhiteIcon);
         m.setColor(1);
         flip(m);
+	isVictory();	
 	this.isBlackTurn = true;
-	isVictory();
     }
     
     if (checkB()==checkW()){
@@ -841,6 +896,7 @@ public class Board extends JFrame implements MouseListener{
     
     this.remove(numW);
     numW= new JTextField(p2+": "+checkW());
+    
     numW.setEditable(false);
     this.add(numW);
     
