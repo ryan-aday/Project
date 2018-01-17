@@ -15,7 +15,10 @@ public class Board extends JFrame implements MouseListener{
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn=true;
-
+    
+    private Timer timer;
+    private ActionListener ae;
+    
     public static String p1="";
     public static String p2="";
     
@@ -142,7 +145,10 @@ public class Board extends JFrame implements MouseListener{
 	turn= new JTextField("Turn: "+checkTurn());
 	turn.setEditable(false);
 	pane.add(turn);
-	
+
+	timer=new Timer(600, new actionListener(){
+		public void actionPerformed(ActionEvent e){
+		    
     }
 
 
