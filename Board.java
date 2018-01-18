@@ -1,4 +1,7 @@
 
+import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,15 +19,15 @@ public class Board extends JFrame implements MouseListener{
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn=true;
     
-    private Timer timer;
-    private String time;
-    private String seconds;
-    private ActionListener ae;
+    public static boolean isTimer=false;
+    private static Timer timer = new Timer();
+    private static TimerTask task;
+    public static int seconds = 0;
     
     public static String p1="";
     public static String p2="";
     
-    private JTextField victor, numB, numW, turn;
+    private JTextField victor, numB, numW, turn, timed;
     private String v="";
 
     //Board Setup
@@ -148,14 +151,43 @@ public class Board extends JFrame implements MouseListener{
 	turn.setEditable(false);
 	pane.add(turn);
 
-	timer=new Timer(600, new actionListener(){
-		public void actionPerformed(ActionEvent e){
-		}
-	    });
-	timer.start();
-	
+	timed=new JTextField("ALLO");
+	pane.add(timed);
+	times();
+
     }
 
+
+    public void times(){
+	pane.remove(timed);
+	timed= new JTextField("Timer Set");
+	timed.setEditable(false);
+	pane.add(timed);
+	timer=new Timer();
+	task = new TimerTask() {
+		private final int MAX_SECONDS = 600;
+		
+		@Override
+		public void run() {
+		    if (seconds < MAX_SECONDS) {
+			System.out.println("Seconds = " + seconds);
+			/*pane.remove(timed);
+			timed= new JTextField("Time: "+(MAX_SECONDS-seconds));
+			pane.add(timed);
+			*/
+			//timed.setEditable(false);
+			seconds++;
+		    }
+		    else{
+			cancel();
+			CloseFrame();
+			Victory.main(new String[0]);
+			seconds=0;
+		    }
+		}
+	    };
+	timer.schedule(task, 0, 600);
+    }
 
     //For when mouse hovers over pieces
     public void clearColor(JButton[][] a){
@@ -852,11 +884,6 @@ public class Board extends JFrame implements MouseListener{
         }
         else{
         }
-	int hours = (int) ((this.remainingTime / 3600000) % 60);
-        int minutes = (int) ((this.remainingTime / 60000) % 60);
-        int seconds = (int) (((this.remainingTime) / 1000) % 60);
-
-        time= (format.format(hours) + ":" + format.format(minutes) + ":" + format.format(seconds));
     }
     
     public void mouseExited(MouseEvent e){

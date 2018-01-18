@@ -14,12 +14,13 @@ public class mainMenu extends JFrame{
     private ImageIcon logo;
     private JLabel logoLabel;
     private JLabel l;
+    public JCheckBox isTimer;
 
     private JTextField p1, p2;
 
     public mainMenu(){
         this.setTitle("Othello: The Game");
-	this.setSize(850,300);
+	this.setSize(1000,300);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -65,10 +66,17 @@ public class mainMenu extends JFrame{
 		    Manual.main(new String[0]);
 		}
 	    });
+
+	isTimer= new JCheckBox("Timer?");
+	if (isTimer.isSelected()){
+	    Board.isTimer=true;
+	}
+	
 	pane.add(p1);
 	pane.add(p2);
 	pane.add(StartGame);
-	pane.add(manual);	
+	pane.add(manual);
+	pane.add(isTimer);
     }
 
 
