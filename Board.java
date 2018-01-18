@@ -17,6 +17,8 @@ public class Board extends JFrame implements MouseListener{
     private boolean isBlackTurn=true;
     
     private Timer timer;
+    private String time;
+    private String seconds;
     private ActionListener ae;
     
     public static String p1="";
@@ -148,7 +150,10 @@ public class Board extends JFrame implements MouseListener{
 
 	timer=new Timer(600, new actionListener(){
 		public void actionPerformed(ActionEvent e){
-		    
+		}
+	    });
+	timer.start();
+	
     }
 
 
@@ -835,19 +840,23 @@ public class Board extends JFrame implements MouseListener{
     //Mouse Methods for when Mouse enters Field
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
-	   if (m.getColor() == 2 && isValidMove(m) && isBlackTurn){
-	       m.setEnabled(true);
-	       m.setIcon(blackRoll);
-	       m.setFocusPainted(false);
-	   }
+	if (m.getColor() == 2 && isValidMove(m) && isBlackTurn){
+	    m.setEnabled(true);
+	    m.setIcon(blackRoll);
+	    m.setFocusPainted(false);
+	}
         else if (m.getColor() == 2 && isValidMove(m) && isBlackTurn == false){
             m.setEnabled(true);
             m.setIcon(whiteRoll);
             m.setFocusPainted(false);
         }
-        else {
-            
+        else{
         }
+	int hours = (int) ((this.remainingTime / 3600000) % 60);
+        int minutes = (int) ((this.remainingTime / 60000) % 60);
+        int seconds = (int) (((this.remainingTime) / 1000) % 60);
+
+        time= (format.format(hours) + ":" + format.format(minutes) + ":" + format.format(seconds));
     }
     
     public void mouseExited(MouseEvent e){
