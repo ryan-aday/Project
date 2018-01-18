@@ -697,6 +697,23 @@ public class Board extends JFrame implements MouseListener{
     }
     }
 
+	public boolean BlackNoMoves(){
+        int avaliableMoves = 0;
+        for (int i = 0;i < Locations.length;i ++){
+            for (int c = 0;c < Locations[i].length;c ++){
+                if (isValidMove(Locations[i][c])){
+                    avaliableMoves += 1;
+                }
+            }
+        }
+        if (avaliableMoves >= 1){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     
     //Victory Conditions
     //East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p)
