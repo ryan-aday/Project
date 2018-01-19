@@ -14,7 +14,7 @@ public class mainMenu extends JFrame{
     private ImageIcon logo;
     private JLabel logoLabel;
     private JLabel l;
-    public JCheckBox isTimer;
+    public static JCheckBox isTimer;
 
     private JTextField p1, p2;
 
@@ -68,9 +68,6 @@ public class mainMenu extends JFrame{
 	    });
 
 	isTimer= new JCheckBox("Timer?");
-	if (isTimer.isSelected()){
-	    Board.isTimer=true;
-	}
 	
 	pane.add(p1);
 	pane.add(p2);

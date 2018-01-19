@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -151,9 +150,14 @@ public class Board extends JFrame implements MouseListener{
 	turn.setEditable(false);
 	pane.add(turn);
 
-	timed=new JTextField("ALLO");
-	pane.add(timed);
-	times();
+	if (mainMenu.isTimer.isSelected()){
+	    setTimer();
+	    if (isTimer==true){
+		timed=new JTextField("No Timer");
+		pane.add(timed);
+		times();
+	    }
+	}
 
     }
 
@@ -189,6 +193,11 @@ public class Board extends JFrame implements MouseListener{
 	timer.schedule(task, 0, 600);
     }
 
+    public static void setTimer(){
+	    isTimer=true;
+    }
+    
+    
     //For when mouse hovers over pieces
     public void clearColor(JButton[][] a){
         for (int i = 0;i < a.length; i++){
@@ -946,6 +955,11 @@ public class Board extends JFrame implements MouseListener{
     turn= new JTextField("Turn: "+checkTurn());
     turn.setEditable(false);
     this.add(turn);
+    
+    if (isTimer==true){
+	this.remove(timed);
+	this.add(timed);
+    }
     }
     
     
