@@ -697,7 +697,8 @@ public class Board extends JFrame implements MouseListener{
     }
     }
 
-	public boolean BlackNoMoves(){
+    /*
+    public boolean BlackNoMoves(){
         int avaliableMoves = 0;
         for (int i = 0;i < Locations.length;i ++){
             for (int c = 0;c < Locations[i].length;c ++){
@@ -730,10 +731,10 @@ public class Board extends JFrame implements MouseListener{
             return false;
         }
     }
+    */
 
     
     //Victory Conditions
-    //East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p)
     public void isVictory(){
 	int bcount=0;
 	int wcount=0;
