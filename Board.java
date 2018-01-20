@@ -183,7 +183,7 @@ public class Board extends JFrame implements MouseListener{
             }
         }
         else if (isBlackTurn == false && Locations[y][x + 1].getColor() == 0){
-            for (int newCol = x + 2; newCol < 7; newCol ++){
+            for (int newCol = x + 2; newCol <= 7; newCol ++){
                 if (Locations[y][newCol].getColor() == 2){
                     return false;
                 }
@@ -395,13 +395,13 @@ public class Board extends JFrame implements MouseListener{
         if (x == 0 && (y >= 1 && y <= 6)){
             return 0;
         }
-        else if (y == 0 && (x >= 1 && x <= 6)){
+        if (y == 0 && (x >= 1 && x <= 6)){
             return 1;
         }
-        else if (x == 7 && (y >= 1 && y <= 6)){
+        if (x == 7 && (y >= 1 && y <= 6)){
             return 2;
         }
-        else if (y == 7 && (x >= 1 && x <= 6)){
+        if (y == 7 && (x >= 1 && x <= 6)){
             return 3;
         }
         return -1;
@@ -418,13 +418,13 @@ public class Board extends JFrame implements MouseListener{
         if (x == 0 && y == 0){
             return 0;
         }
-        else if (x == 7 && y == 0){
+        if (x == 7 && y == 0){
             return 1;
         }
-        else if (x == 0 && y == 7){
+        if (x == 0 && y == 7){
             return 2;
         }
-        else if (x == 7 && y == 7){
+        if (x == 7 && y == 7){
             return 3;
         }
         return -1;
@@ -435,13 +435,13 @@ public class Board extends JFrame implements MouseListener{
         if (CornerPieces(p) == 0){
             return (South(p) || East(p) || SouthEast(p));
         }
-        else if (CornerPieces(p) == 1){
+        if (CornerPieces(p) == 1){
             return (West(p) || South(p) || SouthWest(p)); 
         }
-        else if (CornerPieces(p) == 2){
+        if (CornerPieces(p) == 2){
             return (North(p) || NorthEast(p) || East(p));
         }
-        else if (CornerPieces(p) == 3){
+        if (CornerPieces(p) == 3){
             return (North(p) || NorthWest(p) || West(p));
         }
         
@@ -449,13 +449,13 @@ public class Board extends JFrame implements MouseListener{
         if (BorderPieces(p) == 0){
             return (East(p) || North(p) || South(p) || NorthEast(p) || SouthEast(p));
         }
-        else if (BorderPieces(p) == 1){
+        if (BorderPieces(p) == 1){
             return (South(p) || East(p) || West(p) || SouthEast(p) || SouthWest(p));
         }
-        else if (BorderPieces(p) == 2){
+        if (BorderPieces(p) == 2){
             return (West(p) || North(p) || South(p) || NorthWest(p) || SouthWest(p));
         } 
-        else if (BorderPieces(p) == 3){
+        if (BorderPieces(p) == 3){
             return (North(p) || East(p) || West(p) || NorthEast(p) || NorthWest(p));
         }
         return(East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p));
