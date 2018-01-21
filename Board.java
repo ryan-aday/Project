@@ -1,4 +1,6 @@
-
+import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,11 +17,16 @@ public class Board extends JFrame implements MouseListener{
     private int whiteNum;
     private ImageIcon blackRoll,whiteRoll,BlackIcon,WhiteIcon;
     private boolean isBlackTurn=true;
-
+    
+    public static boolean isTimer=false;
+    private static Timer timer = new Timer();
+    private static TimerTask task;
+    public static int seconds = 0;
+    
     public static String p1="";
     public static String p2="";
     
-    private JTextField victor, numB, numW, turn;
+    private JTextField victor, numB, numW, turn, timed;
     private String v="";
 
     //Board Setup
@@ -142,10 +149,55 @@ public class Board extends JFrame implements MouseListener{
 	turn= new JTextField("Turn: "+checkTurn());
 	turn.setEditable(false);
 	pane.add(turn);
-	
+
+	if (mainMenu.isTimer.isSelected()){
+	    setTimer();
+	    if (isTimer==true){
+		timed=new JTextField("No Timer");
+		pane.add(timed);
+		times();
+	    }
+	}
+
     }
 
 
+    public void times(){
+	pane.remove(timed);
+	timed= new JTextField("Timer Set");
+	timed.setEditable(false);
+	pane.add(timed);
+	timer=new Timer();
+	task = new TimerTask() {
+		private final int MAX_SECONDS = 600;
+		
+		@Override
+		public void run() {
+		    if (seconds < MAX_SECONDS) {
+			System.out.println("Seconds = " + seconds);
+			/*pane.remove(timed);
+			timed= new JTextField("Time: "+(MAX_SECONDS-seconds));
+			pane.add(timed);
+			*/
+			//timed.setEditable(false);
+			seconds++;
+		    }
+		    else{
+			cancel();
+			CloseFrame();
+			Victory.main(new String[0]);
+			seconds=0;
+		    }
+		}
+	    };
+	timer.schedule(task, 0, 600);
+    }
+
+    public static void setTimer(){
+	    isTimer=true;
+    }
+    
+    
     //For when mouse hovers over pieces
     public void clearColor(JButton[][] a){
         for (int i = 0;i < a.length; i++){
@@ -697,44 +749,9 @@ public class Board extends JFrame implements MouseListener{
     }
     }
 
-    /*
-    public boolean BlackNoMoves(){
-        int avaliableMoves = 0;
-        for (int i = 0;i < Locations.length;i ++){
-            for (int c = 0;c < Locations[i].length;c ++){
-                if (isValidMove(Locations[i][c])){
-                    avaliableMoves += 1;
-                }
-            }
-        }
-        if (avaliableMoves >= 1){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-	public boolean WhiteNoMoves(){
-        int avaliableMoves = 0;
-        for (int i = 0;i < Locations.length;i ++){
-            for (int c = 0;c < Locations[i].length;c ++){
-                if (isValidMove(Locations[i][c])){
-                    avaliableMoves += 1;
-                }
-            }
-        }
-        if (avaliableMoves >= 1){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    */
-
     
     //Victory Conditions
+    //East(p) || West(p) || North(p) || South(p) || NorthEast(p) || NorthWest(p) || SouthWest(p) || SouthEast(p)
     public void isVictory(){
 	int bcount=0;
 	int wcount=0;
@@ -864,18 +881,17 @@ public class Board extends JFrame implements MouseListener{
     //Mouse Methods for when Mouse enters Field
     public void mouseEntered(MouseEvent e){
         Pieces m = (Pieces) e.getSource();
-	   if (m.getColor() == 2 && isValidMove(m) && isBlackTurn){
-	       m.setEnabled(true);
-	       m.setIcon(blackRoll);
-	       m.setFocusPainted(false);
-	   }
+	if (m.getColor() == 2 && isValidMove(m) && isBlackTurn){
+	    m.setEnabled(true);
+	    m.setIcon(blackRoll);
+	    m.setFocusPainted(false);
+	}
         else if (m.getColor() == 2 && isValidMove(m) && isBlackTurn == false){
             m.setEnabled(true);
             m.setIcon(whiteRoll);
             m.setFocusPainted(false);
         }
-        else {
-            
+        else{
         }
     }
     
@@ -939,6 +955,11 @@ public class Board extends JFrame implements MouseListener{
     turn= new JTextField("Turn: "+checkTurn());
     turn.setEditable(false);
     this.add(turn);
+    
+    if (isTimer==true){
+	this.remove(timed);
+	this.add(timed);
+    }
     }
     
     
