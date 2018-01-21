@@ -5,7 +5,7 @@ Yuxuan Zou and Ryan Aday
 
 # Instructions 
 Run the mainMenu java file and the GUI will pop up. Click playGame to play, manual reading is on the bottom and you can change the player name 
-by typing it in. If you want a timer, click the timer check button to implement a timer in the game. The rules for Othello are simple and it should all be covered in the manual reading. Game ends when the board is filled with pieces of both color, the person with more pieces wins. This is a 2 player game so challenge your friends to a duel.
+by typing it in. The rules for Othello are simple and it should all be covered in the manual reading. Game ends when the board is filled with pieces of both color, the person with more pieces wins. This is a 2 player game so challenge your friends to a duel. You can also try the blitz mode which gives both players 1 minute to finish the game and try to get as much pieces as possible. The Blitz mode button is on the right of the mainMenu screen.
 <p>
 <img src="BoardPic.PNG" width="350"/>
 </p>
