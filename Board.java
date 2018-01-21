@@ -169,12 +169,12 @@ public class Board extends JFrame implements MouseListener{
 	pane.add(timed);
 	timer=new Timer();
 	task = new TimerTask() {
-		private final int MAX_SECONDS = 600;
+		private final int MAX_SECONDS = 60;
 		
 		@Override
 		public void run() {
 		    if (seconds < MAX_SECONDS) {
-			System.out.println("Seconds = " + seconds);
+			System.out.println("Seconds = " + (MAX_SECONDS-seconds));
 			/*pane.remove(timed);
 			timed= new JTextField("Time: "+(MAX_SECONDS-seconds));
 			pane.add(timed);

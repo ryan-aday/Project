@@ -67,7 +67,7 @@ public class mainMenu extends JFrame{
 		}
 	    });
 
-	isTimer= new JCheckBox("Timer?");
+	isTimer= new JCheckBox("Blitz?");
 	
 	pane.add(p1);
 	pane.add(p2);
