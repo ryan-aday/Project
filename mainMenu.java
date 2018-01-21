@@ -58,7 +58,7 @@ public class mainMenu extends JFrame{
 		}
 	    });
 
-	manual=new JButton("Manual- For the Sad Bois");
+	manual=new JButton("Manual");
 	manual.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
