@@ -16,7 +16,7 @@ by typing it in. The rules for Othello are simple and it should all be covered i
 -Shows avaliable moves using ghost pieces<br>
 -Winning screen which pops up after a player wins<br>
 -Text boxes at the bottom which shows the player's turn and how many pieces they currently own<br>
--Blitz mode, players only has 1 min to finish the game, whoever gets more pieces after 1 minute wins<br>
+-Blitz mode, players only has 1 min to finish the game, whoever gets more pieces after 1 minute wins, This is what we meant by timer in the prototype. The timer will appear in the terminal<br>
 
 # Dev Log
 -1/3/18: Initial Commit/started code on mainMenu</br>
